@@ -21,16 +21,16 @@
   <main id="main">
     <header class="page-hero">
       <p class="eyebrow">Proof</p>
-      <h1>The method was earned, not designed.</h1>
-      <p class="lede">Twelve years of infrastructure development, then a three-day automation build under a deadline that could not be met by hand. The projects below are not illustrations of the methodology. They are where it came from, and what it became.</p>
+      <h1>Case studies.</h1>
+      <p class="lede">Accounts of specific engagements: what the situation was, what was built, and what resulted. Clients are not named. Figures are either exact or labelled as estimates.</p>
     </header>
 
     <section class="section" aria-labelledby="origin-heading">
       <div class="section-heading">
         <p class="eyebrow">Part one</p>
-        <h2 id="origin-heading">Where the method came from.</h2>
+        <h2 id="origin-heading">Land and entitlement.</h2>
       </div>
-      <p class="section-lede">Site development is an adversarial, documentation-heavy discipline with public hearings at the end of it. It rewards exactly one thing: knowing what is true before you have to defend it in front of a room.</p>
+      <p class="section-lede">Site development is documentation-heavy work that ends in a public hearing. It rewards knowing what is true before you have to defend it in front of a room.</p>
 
       <article class="case-study">
         <p class="case-kicker">Speed under deadline</p>
@@ -89,22 +89,22 @@
       </article>
 
       <article class="case-study">
-        <p class="case-kicker">When the system meets an adversary</p>
-        <h2>Two negotiations nobody expected to win.</h2>
-        <p class="case-lede">Systems thinking is easy to demonstrate on tidy problems. These two were not tidy.</p>
+        <p class="case-kicker">Contested work</p>
+        <h2>Two contested outcomes.</h2>
+        <p class="case-lede">Two situations where the straightforward path had already been ruled out.</p>
         <p><strong>The blanket easement.</strong> A rural build parcel everyone had written off. A Canadian wind energy company had told the landowner its easement would cover fifteen feet on either side of its trunk line, then recorded a blanket easement across the entire eighty-acre parcel — rendering the property unleasable. Rather than move the search ring, the issue was worked across an international border until the developer agreed to re-survey and amend the agreement down to its actual footprint. Title cleared, ground lease secured, tower permitted and built.</p>
-        <p><strong>The contested hearing.</strong> A national tower company learned a competing permit application was being filed and sent outside counsel to argue against it. Every hearing material — decks, exhibits, supporting findings — was built in house. The application was approved. Against retained counsel, without a law degree.</p>
-        <p>An operations practice that only demonstrates tidy process reads as theoretical. These are what happens when the process meets someone trying to defeat it.</p>
+        <p><strong>The contested hearing.</strong> A national tower company learned a competing permit application was being filed and sent outside counsel to argue against it. Every hearing material — decks, exhibits, supporting findings — was built in house. The application was approved over the objection of opposing counsel.</p>
+        
       </article>
     </section>
 
     <section class="section section-dark" aria-labelledby="software-heading">
       <div class="section-heading">
         <p class="eyebrow">Part two</p>
-        <h2 id="software-heading">What the method became.</h2>
+        <h2 id="software-heading">Systems and automation.</h2>
       </div>
       <div class="prose-stack">
-        <p class="prose-on-dark">The relocation automation was the hinge. It happened inside the infrastructure work, and the software practice came out of it. What follows was built after October 2024 by the same operator, using the same four steps, and all of it is running now.</p>
+        <p class="prose-on-dark">The relocation automation above was the starting point: it was written inside the infrastructure work, and the systems practice grew out of it. Everything below was built after October 2024 and is running now.</p>
       </div>
       <div class="card-grid card-grid-two">
         <article class="plain-card proof-card">
@@ -117,19 +117,19 @@
           <h3>Production recovery, not just production</h3>
           <p>A field inspection committed successfully, then a slow path returned an error to the operator. The wrong move is telling a user to retry — that is how you get a duplicate record in a system people trust.</p>
           <p><strong>What happened instead:</strong> the transaction was identified by its original client submission ID, submission ID and payload hash, confirmed as already committed, and recovered without duplication.</p>
-          <p><strong>Why it is here:</strong> a system is not proven by the release that went well. It is proven by what it does when something goes wrong and somebody has to be told the truth about it.</p>
+          <p>Recovery paths of this kind are designed in advance, because the alternative is discovering the gap during an incident.</p>
         </article>
         <article class="plain-card proof-card">
           <h3>SAGE — local-first operations platform</h3>
           <p>A native macOS application for working across a knowledge base, projects and workspaces, meeting processing, review, backup and restore, with provider-flexible AI under human approval.</p>
-          <p><strong>State:</strong> installed and in active internal use, in continued development, preparing for beta. Signed by Synergistic Solutions Unlimited. <strong>Its test suite is roughly the size of the application itself</strong> — a deliberate ratio, not an accident.</p>
-          <p><strong>Not claimed:</strong> commercially available. It is not, and this page will say so until it is.</p>
+          <p><strong>State:</strong> installed and in active internal use, in continued development, preparing for beta. Signed by Synergistic Solutions Unlimited. Its test suite is roughly the size of the application itself.</p>
+          <p><strong>Not commercially available.</strong> It is installed and used internally, and not distributed.</p>
         </article>
         <article class="plain-card proof-card">
           <h3>Lucid — native macOS writing application</h3>
           <p>An editor with an assistant surface that works inside other applications, supporting local models and multiple cloud providers, with credentials in the system Keychain and tracked changes on every suggestion.</p>
           <p><strong>State:</strong> shipped through a sequence of <strong>Apple-notarized, Gatekeeper-accepted releases</strong>, each one extraction-verified and installed. Not yet publicly distributed.</p>
-          <p><strong>Operational result:</strong> in daily use by its author, which is how its defects get found — by use, not by a passing test.</p>
+          <p><strong>Operational result:</strong> in daily use, which is where its remaining defects surface.</p>
         </article>
       </div>
       <p class="section-footnote"><a class="text-link text-link-light" href="contact.html">Discuss the work in front of you <span aria-hidden="true">→</span></a></p>
@@ -153,7 +153,7 @@
         <p>The origin was not a brief. During a family medical event the communication overhead became its own operational problem: one caregiver answering the same questions repeatedly, correcting information that had already gone stale, protecting a recovering person&rsquo;s energy, and coordinating offers of help across a large network while the situation changed by the hour.</p>
         <p>Social platforms were the obvious answer and the wrong one. They put delicate information where it can be misconstrued or reach people it was never meant for, and they set the terms of audience and permanence on your behalf. The alternative was to adapt the need to the tool.</p>
         <p><strong>The sequence mattered more than the feature list.</strong> Private access, dependable official updates, clear publishing confirmation and duplicate prevention came first, because reliability precedes novelty when people are relying on a single source of truth. Vague offers of help then became claimable meals, visits, rides and errands. Capability-scoped roles let trusted organizers coordinate without receiving contact details or administrative access. Navigation, unread badges, refresh behavior and notification preferences were changed later in response to observed friction, not anticipated preference.</p>
-        <p>One detail worth naming, because it is what gets skipped under time pressure: a revision removed visible photo descriptions from the interface while retaining meaningful alternative text for screen readers. Some of the people using it depend on that. Working fast is not a license to ship something that excludes part of the audience.</p>
+        <p>A later revision removed visible photo descriptions from the interface while retaining meaningful alternative text for screen readers, because some of the people using it depend on that.</p>
         <p><strong>Risk was controlled structurally rather than editorially.</strong> The public case study and the private system are separate builds with no shared data plane &mdash; no production database, no real authentication, no messaging, no private media. The demonstration shows the method without asking a redaction filter to protect a live family system, which is the same judgment that produced the private application in the first place.</p>
         <p>It reached a working private application in two calendar days on roughly six hours of hands-on time, and it is in daily use by the people it was built for. It has kept changing as the need has changed.</p>
         <p class="case-lede">The need has always directed the development. Not the reverse.</p>
@@ -164,11 +164,11 @@
     <section class="section split-section" aria-labelledby="honest-heading">
       <div>
         <p class="eyebrow">What is not claimed</p>
-        <h2 id="honest-heading">The boundaries are part of the evidence.</h2>
+        <h2 id="honest-heading">What is not claimed here.</h2>
       </div>
       <div class="prose-stack">
-        <p>A portfolio page that only contains victories is not a portfolio page, it is advertising. So: a technology-transfer program is designed and not yet delivered. The current internal builds of both native applications are signed but await notarization before anyone outside receives them.</p>
-        <p>Every figure above is either exact or labelled as an estimate. Where a number does not exist — hours saved, user counts, precise production dates — none is offered, because the alternative is a figure that cannot survive being checked. That is the same standard applied to client work, and it is the reason the delivery claims can be taken at face value.</p>
+        <p>A technology-transfer program is designed and not yet delivered. The current internal builds of both native applications are signed but await notarization before anyone outside receives them.</p>
+        <p>Every figure above is either exact or labelled as an estimate. Where no number exists — hours saved, user counts, precise production dates — none is given.</p>
       </div>
     </section>
 

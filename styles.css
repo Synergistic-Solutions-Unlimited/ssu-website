@@ -266,8 +266,7 @@ p { margin-top: 0; }
 
 /* Hero headline: two sentences need a tighter scale and character-based wrapping,
    otherwise a wider viewport produces MORE lines, not fewer. */
-.hero h1 { max-width: none; font-size: clamp(2.7rem, 5.4vw, 4.3rem); line-height: 1.04; text-wrap: balance; }
-.hero h1 .h1-break { display: block; }
+.hero h1 { max-width: 24ch; font-size: clamp(2.5rem, 4.6vw, 3.9rem); line-height: 1.06; text-wrap: balance; }
 
 /* Mobile header: seven nav items were consuming a quarter of a phone viewport.
    Tighter type and spacing keeps the whole nav to two compact rows. */
