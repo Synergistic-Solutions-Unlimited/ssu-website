@@ -8,11 +8,23 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main id="main" class="page-hero">
-    <p class="eyebrow">404</p>
-    <h1>That page isn’t here.</h1>
-    <p class="lede">Return to the Synergistic Solutions Unlimited home page.</p>
-    <a class="button button-primary" href="index.html">Go home</a>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Synergistic Solutions Unlimited home"><span class="brand-mark" aria-hidden="true">SSU</span><span>Synergistic Solutions Unlimited</span></a>
+    <nav aria-label="Primary navigation"><a href="index.html">Home</a><a href="infrastructure.html">Infrastructure</a><a href="services.html">Services</a><a href="systems.html">Systems</a><a href="proof.html">Proof</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
+  </header>
+
+  <main id="main">
+    <header class="page-hero">
+      <p class="eyebrow">404</p>
+      <h1>That page isn’t here.</h1>
+      <p class="lede">The address did not resolve. Everything on the site is reachable from the navigation above, or start from one of these.</p>
+      <div class="button-row">
+        <a class="button button-primary" href="index.html">Go home</a>
+        <a class="button button-secondary" href="proof.html">Read the case studies</a>
+      </div>
+    </header>
   </main>
+  <footer class="site-footer"><p>&copy; 2026 Synergistic Solutions Unlimited</p><p>Property Operations &middot; Infrastructure &middot; Systems Engineering</p></footer>
 </body>
 </html>
