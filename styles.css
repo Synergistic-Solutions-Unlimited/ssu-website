@@ -17,7 +17,11 @@ body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inte
 a { color: inherit; }
 .skip-link { position: fixed; top: 10px; left: 10px; z-index: 100; padding: .7rem 1rem; background: var(--ink); color: white; transform: translateY(-160%); }
 .skip-link:focus { transform: translateY(0); }
-a:focus-visible { outline: 3px solid var(--lime); outline-offset: 4px; }
+/* Focus ring: lime measured 1.23:1 against the paper ground, which is invisible.
+   Dark ring on light sections (14.5:1), lime only where the ground is dark (11.8:1). */
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; border-radius: 3px; }
+.section-dark a:focus-visible, .cta-band a:focus-visible, .signal-card a:focus-visible,
+.credential-card a:focus-visible, .quality-bar a:focus-visible, .site-footer a:focus-visible { outline-color: var(--lime); }
 
 .site-header { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; min-height: 96px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 1px solid var(--line); }
 .brand { display: inline-flex; align-items: center; gap: 12px; max-width: 340px; font-size: .91rem; font-weight: 750; line-height: 1.2; text-decoration: none; letter-spacing: -.01em; }
