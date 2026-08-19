@@ -219,3 +219,47 @@ p { margin-top: 0; }
   .stat-band li:first-child { border-top: 0; }
   .evidence-table th, .evidence-table td { padding-right: 8px; font-size: .88rem; }
 }
+
+/* Two practices, one method — paired presentation */
+.practice-band { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; padding: 0 0 clamp(48px, 6vw, 80px); }
+.practice-spine { max-width: 40ch; margin: 0 0 40px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.5rem, 3vw, 2.3rem); font-weight: 500; letter-spacing: -.03em; line-height: 1.2; color: var(--ink); }
+.practice-spine span { color: var(--teal); }
+.practice-cols { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); border-top: 1px solid var(--line); }
+.practice-col { padding-top: 28px; }
+.practice-col + .practice-col { padding-left: clamp(28px, 5vw, 64px); border-left: 1px solid var(--line); }
+.practice-label { margin: 0 0 6px; color: var(--teal); font-size: .76rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.practice-years { margin: 0 0 26px; color: var(--ink-soft); font-size: .92rem; }
+.practice-col ul { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.practice-col li { min-width: 0; }
+.practice-col .stat-figure { display: block; margin: 0 0 6px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.9rem, 3.2vw, 2.7rem); font-weight: 500; letter-spacing: -.03em; line-height: 1; }
+.practice-col .stat-label { display: block; color: var(--ink-soft); font-size: .88rem; line-height: 1.4; }
+.proof-group { margin-top: clamp(40px, 5vw, 64px); }
+.proof-group:first-of-type { margin-top: 0; }
+.proof-group-label { display: flex; align-items: baseline; gap: 14px; margin: 0 0 8px; }
+.proof-group-label .pg-tag { color: var(--lime); font-size: .74rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.proof-group-label .pg-rule { flex: 1; height: 1px; background: rgba(255, 255, 255, .22); }
+.proof-group h3.pg-title { margin: 0 0 26px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.5rem, 2.8vw, 2.2rem); font-weight: 500; letter-spacing: -.03em; color: white; }
+
+@media (max-width: 820px) {
+  .practice-cols { grid-template-columns: 1fr; }
+  .practice-col + .practice-col { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+}
+@media (max-width: 480px) {
+  .practice-col ul { grid-template-columns: 1fr; gap: 16px; }
+}
+
+/* The through-line — brief / saw / result */
+.insight-list { margin: 0; padding: 0; list-style: none; }
+.insight-list li { padding: 34px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: clamp(20px, 4vw, 56px); align-items: start; }
+.insight-list li:last-child { border-bottom: 1px solid var(--line); }
+.insight-brief { margin: 0; }
+.insight-brief .insight-tag { display: block; margin-bottom: 10px; color: var(--teal); font-size: .72rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.insight-brief .insight-said { margin: 0; color: var(--ink-soft); font-size: 1.02rem; line-height: 1.55; }
+.insight-body { margin: 0; }
+.insight-saw { margin: 0 0 14px; color: var(--ink); font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.14rem, 1.9vw, 1.42rem); line-height: 1.42; }
+.insight-result { margin: 0; color: var(--ink-soft); font-size: 1.02rem; line-height: 1.55; }
+.insight-result strong { color: var(--teal-dark); font-weight: 750; }
+
+@media (max-width: 820px) {
+  .insight-list li { grid-template-columns: 1fr; gap: 14px; padding: 26px 0; }
+}
