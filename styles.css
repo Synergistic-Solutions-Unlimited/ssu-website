@@ -69,14 +69,14 @@ p { margin-top: 0; }
 .cta-band h2 { max-width: 720px; margin: 0; font-size: clamp(2rem, 4vw, 3.7rem); }
 
 .page-hero { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; padding: clamp(72px, 10vw, 128px) 0 clamp(58px, 8vw, 100px); }
-.page-hero h1 { max-width: 1050px; font-size: clamp(3rem, 6.5vw, 6.1rem); }
+.page-hero h1 { max-width: 22ch; font-size: clamp(2.5rem, 5vw, 4.4rem); line-height: 1.06; text-wrap: balance; }
 .service-list { padding-top: 20px; }
 .service-row { display: grid; grid-template-columns: 110px 1fr; gap: 28px; padding: 44px 0; border-top: 1px solid var(--line); }
 .service-row:last-child { border-bottom: 1px solid var(--line); }
 .service-row .card-number { margin: 6px 0 0; }
 .service-row h2 { font-size: clamp(2rem, 4vw, 3.4rem); }
 .service-row p:last-child { max-width: 760px; color: var(--ink-soft); font-size: 1.08rem; }
-.contact-hero h1 { font-size: clamp(3rem, 6vw, 5.6rem); }
+.contact-hero h1 { max-width: 22ch; font-size: clamp(2.5rem, 5vw, 4.4rem); line-height: 1.06; text-wrap: balance; }
 .contact-email { display: inline-block; margin-bottom: 26px; color: var(--lime); font-size: clamp(1.05rem, 2vw, 1.3rem); font-weight: 800; text-underline-offset: 5px; }
 .contact-card p:last-child { color: rgba(255,255,255,.75); }
 
@@ -220,7 +220,7 @@ p { margin-top: 0; }
   .evidence-table th, .evidence-table td { padding-right: 8px; font-size: .88rem; }
 }
 
-/* Two practices, one method — paired presentation */
+/* Two practices, one method: paired presentation */
 .practice-band { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; padding: 0 0 clamp(48px, 6vw, 80px); }
 .practice-spine { max-width: 40ch; margin: 0 0 40px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.5rem, 3vw, 2.3rem); font-weight: 500; letter-spacing: -.03em; line-height: 1.2; color: var(--ink); }
 .practice-spine span { color: var(--teal); }
@@ -248,7 +248,7 @@ p { margin-top: 0; }
   .practice-col ul { grid-template-columns: 1fr; gap: 16px; }
 }
 
-/* The through-line — brief / saw / result */
+/* The through-line: brief / saw / result */
 .insight-list { margin: 0; padding: 0; list-style: none; }
 .insight-list li { padding: 34px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: clamp(20px, 4vw, 56px); align-items: start; }
 .insight-list li:last-child { border-bottom: 1px solid var(--line); }
@@ -281,3 +281,6 @@ p { margin-top: 0; }
   nav { margin-top: 16px; gap: 6px 14px; }
   nav a { font-size: .82rem; }
 }
+
+/* Provenance note under the figures */
+.band-note { margin: 20px 0 0; color: var(--ink-soft); font-size: .9rem; font-style: italic; }

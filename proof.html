@@ -36,8 +36,8 @@
         <p class="case-kicker">Speed under deadline</p>
         <h2>400 sites, 60 days, three days to build the answer.</h2>
         <p class="case-lede">A national wireless carrier issued a portfolio of nearly 400 relocation candidates and gave 60 days to return feasibility and permitting recommendations on every one of them. Assembling that by hand was not achievable in the time available.</p>
-        <p>The carrier's site database was exported as the single source of truth. 315 candidates were plotted as geospatial points. Python generated review radii sized by market classification — half a mile urban, one mile rural. A macro-enabled Word template built the folder structure and a pre-populated feasibility analysis for every site.</p>
-        <p>Each generated document arrived already carrying its site number and name, state and jurisdiction, coordinates, ground elevation, existing tower height and structure type, carrier centerline and height above ground, and review radius — plus structured sections for search-area feasibility, permitting paths split between raw land and colocation, feasibility maps, and the relevant zoning ordinance excerpts.</p>
+        <p>The carrier's site database was exported as the single source of truth. 315 candidates were plotted as geospatial points. Python generated review radii sized by market classification: half a mile urban, one mile rural. A macro-enabled Word template built the folder structure and a pre-populated feasibility analysis for every site.</p>
+        <p>Each generated document arrived already carrying its site number and name, state and jurisdiction, coordinates, ground elevation, existing tower height and structure type, carrier centerline and height above ground, and review radius, plus structured sections for search-area feasibility, permitting paths split between raw land and colocation, feasibility maps, and the relevant zoning ordinance excerpts.</p>
         <p><strong>317 feasibility packages across 316 sites, delivered on schedule.</strong> The pipeline was built in three days by an operator with no prior programming experience.</p>
         <p>Only the attributes the automation actually required left the client's system: coordinates, structure height, city, state. Nothing else was exported.</p>
 
@@ -56,7 +56,7 @@
           </tbody>
         </table>
 
-        <p class="estimate-note"><strong>Stated as an estimate:</strong> the labor hours this removed run to several hundred. That figure is a considered estimate, not a measurement, and it is not presented as one. The delivery counts — 317 packages, 316 sites, 60-day window, three-day build — are exact.</p>
+        <p class="estimate-note"><strong>Stated as an estimate:</strong> the labor hours this removed run to several hundred. That figure is a considered estimate, not a measurement, and it is not presented as one. The delivery counts are exact: 317 packages, 316 sites, a 60-day window, a three-day build.</p>
 
         <div class="method-map">
           <p class="mini-label">Mapped to the method</p>
@@ -74,7 +74,7 @@
         <h2>Documents that became the standard.</h2>
         <p class="case-lede">Two national carriers independently took documentation built for internal workflow and adopted it as their own enterprise standard.</p>
         <p>One deployed the feasibility and site documentation forms across its national vendor base. The other adopted a site candidate information package as its internal standard. Neither was pitched a product. Both encountered a working document and made it the bar their other vendors had to meet.</p>
-        <p>The follow-on work proved the forms were doing real work rather than formatting it. Quality review of other vendors' submittals against those same forms reached different feasibility conclusions — and recovered sites those reviews had ruled out.</p>
+        <p>The follow-on work proved the forms were doing real work rather than formatting it. Quality review of other vendors' submittals against those same forms reached different feasibility conclusions, and recovered sites those reviews had ruled out.</p>
         <p>Both carriers are named on request.</p>
 
         <div class="method-map">
@@ -89,11 +89,26 @@
       </article>
 
       <article class="case-study">
+        <p class="case-kicker">Standing in the room</p>
+        <h2>Several hundred hearings. Three denials in twelve years.</h2>
+        <p class="case-lede">Site development ends in public. Zoning boards, plan commissions, boards of adjustment. I have presented several hundred times and been denied three.</p>
+        <p>One of those three I called before we filed. The client wanted to proceed at a site that did not meet the ordinance and I told him we would lose. The other two were decided on political rather than regulatory grounds, at sites that met every published requirement.</p>
+        <p>That record comes from doing the jurisdictional work before anyone commits capital, and from not bringing a body a case it cannot approve.</p>
+        <p class="estimate-note"><strong>Stated precisely:</strong> the denial count is exact, three. &ldquo;Several hundred hearings&rdquo; is a considered estimate rather than a counted figure.</p>
+        <div class="method-map">
+          <p class="mini-label">Mapped to the method</p>
+          <ol>
+            <li><strong>Source of truth first.</strong> Title, easements, ordinance, staff position, and findings resolved before the application is filed. The homework is the whole job.</li>
+          </ol>
+        </div>
+      </article>
+
+      <article class="case-study">
         <p class="case-kicker">Contested work</p>
         <h2>Two contested outcomes.</h2>
         <p class="case-lede">Two situations where the straightforward path had already been ruled out.</p>
-        <p><strong>The blanket easement.</strong> A rural build parcel everyone had written off. A Canadian wind energy company had told the landowner its easement would cover fifteen feet on either side of its trunk line, then recorded a blanket easement across the entire eighty-acre parcel — rendering the property unleasable. Rather than move the search ring, the issue was worked across an international border until the developer agreed to re-survey and amend the agreement down to its actual footprint. Title cleared, ground lease secured, tower permitted and built.</p>
-        <p><strong>The contested hearing.</strong> A national tower company learned a competing permit application was being filed and sent outside counsel to argue against it. Every hearing material — decks, exhibits, supporting findings — was built in house. The application was approved over the objection of opposing counsel.</p>
+        <p><strong>The blanket easement.</strong> A rural build parcel everyone had written off. A Canadian wind energy company had told the landowner its easement would cover fifteen feet on either side of its trunk line, then recorded a blanket easement across the entire eighty-acre parcel, rendering the property unleasable. Rather than move the search ring, the issue was worked across an international border until the developer agreed to re-survey and amend the agreement down to its actual footprint. Title cleared, ground lease secured, tower permitted and built.</p>
+        <p><strong>The contested hearing.</strong> A national tower company learned a competing permit application was being filed and sent outside counsel to argue against it. Every hearing material, including decks, exhibits and supporting findings, was built in house. The application was approved over the objection of opposing counsel.</p>
         
       </article>
     </section>
@@ -115,18 +130,18 @@
         </article>
         <article class="plain-card proof-card">
           <h3>Production recovery, not just production</h3>
-          <p>A field inspection committed successfully, then a slow path returned an error to the operator. The wrong move is telling a user to retry — that is how you get a duplicate record in a system people trust.</p>
+          <p>A field inspection committed successfully, then a slow path returned an error to the operator. The wrong move is telling a user to retry. That is how you get a duplicate record in a system people trust.</p>
           <p><strong>What happened instead:</strong> the transaction was identified by its original client submission ID, submission ID and payload hash, confirmed as already committed, and recovered without duplication.</p>
           <p>Recovery paths of this kind are designed in advance, because the alternative is discovering the gap during an incident.</p>
         </article>
         <article class="plain-card proof-card">
-          <h3>SAGE — local-first operations platform</h3>
+          <h3>SAGE: local-first operations platform</h3>
           <p>A native macOS application for working across a knowledge base, projects and workspaces, meeting processing, review, backup and restore, with provider-flexible AI under human approval.</p>
           <p><strong>State:</strong> installed and in active internal use, in continued development, preparing for beta. Signed by Synergistic Solutions Unlimited. Its test suite is roughly the size of the application itself.</p>
           <p><strong>Not commercially available.</strong> It is installed and used internally, and not distributed.</p>
         </article>
         <article class="plain-card proof-card">
-          <h3>Lucid — native macOS writing application</h3>
+          <h3>Lucid: native macOS writing application</h3>
           <p>An editor with an assistant surface that works inside other applications, supporting local models and multiple cloud providers, with credentials in the system Keychain and tracked changes on every suggestion.</p>
           <p><strong>State:</strong> shipped through a sequence of <strong>Apple-notarized, Gatekeeper-accepted releases</strong>, each one extraction-verified and installed. Not yet publicly distributed.</p>
           <p><strong>Operational result:</strong> in daily use, which is where its remaining defects surface.</p>
@@ -150,14 +165,14 @@
           <li class="tag">Rapid execution</li>
           <li class="tag">Stakeholder communication</li>
         </ul>
-        <p>The origin was not a brief. During a family medical event the communication overhead became its own operational problem: one caregiver answering the same questions repeatedly, correcting information that had already gone stale, protecting a recovering person&rsquo;s energy, and coordinating offers of help across a large network while the situation changed by the hour.</p>
+        <p>The origin was not a brief. A family needed one private place to keep the people who cared about them informed, and the communication overhead had become its own operational problem: one person answering the same questions repeatedly, correcting information that had already gone stale, and coordinating offers of help across a large network while circumstances changed by the hour.</p>
         <p>Social platforms were the obvious answer and the wrong one. They put delicate information where it can be misconstrued or reach people it was never meant for, and they set the terms of audience and permanence on your behalf. The alternative was to adapt the need to the tool.</p>
         <p><strong>The sequence mattered more than the feature list.</strong> Private access, dependable official updates, clear publishing confirmation and duplicate prevention came first, because reliability precedes novelty when people are relying on a single source of truth. Vague offers of help then became claimable meals, visits, rides and errands. Capability-scoped roles let trusted organizers coordinate without receiving contact details or administrative access. Navigation, unread badges, refresh behavior and notification preferences were changed later in response to observed friction, not anticipated preference.</p>
         <p>A later revision removed visible photo descriptions from the interface while retaining meaningful alternative text for screen readers, because some of the people using it depend on that.</p>
-        <p><strong>Risk was controlled structurally rather than editorially.</strong> The public case study and the private system are separate builds with no shared data plane &mdash; no production database, no real authentication, no messaging, no private media. The demonstration shows the method without asking a redaction filter to protect a live family system, which is the same judgment that produced the private application in the first place.</p>
+        <p><strong>Risk was controlled structurally rather than editorially.</strong> The public case study and the private system are separate builds with no shared data plane: no production database, no real authentication, no messaging, no private media. The demonstration shows the method without asking a redaction filter to protect a live family system, which is the same judgment that produced the private application in the first place.</p>
         <p>It reached a working private application in two calendar days on roughly six hours of hands-on time, and it is in daily use by the people it was built for. It has kept changing as the need has changed.</p>
         <p class="case-lede">The need has always directed the development. Not the reverse.</p>
-        <p class="estimate-note"><strong>Born from necessity during a family medical crisis; presented publicly with no real identities, health records, messages, photographs, or production connections.</strong> <a href="https://family-care-hub.thinksynergy.biz">Explore the case study <span aria-hidden="true">&rarr;</span></a></p>
+        <p class="estimate-note"><strong>Presented publicly with no real identities, messages, photographs, or production connections.</strong> <a href="https://family-care-hub.thinksynergy.biz">Explore the case study <span aria-hidden="true">&rarr;</span></a></p>
       </article>
     </section>
 
@@ -168,7 +183,7 @@
       </div>
       <div class="prose-stack">
         <p>A technology-transfer program is designed and not yet delivered. The current internal builds of both native applications are signed but await notarization before anyone outside receives them.</p>
-        <p>Every figure above is either exact or labelled as an estimate. Where no number exists — hours saved, user counts, precise production dates — none is given.</p>
+        <p>Every figure above is either exact or labelled as an estimate. Where no number exists for hours saved, user counts, or precise production dates, none is given.</p>
       </div>
     </section>
 

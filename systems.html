@@ -22,7 +22,7 @@
     <header class="page-hero">
       <p class="eyebrow">Systems in practice</p>
       <h1>Practical operating systems, built from the work outward.</h1>
-      <p class="lede">SSU connects data, field actions, review, automation, and documentation so recurring work becomes easier to operate and safer to change. The four sections below—property operating systems, operational control systems, software and integration systems, and AI and knowledge systems—are patterns SSU has built and hardened in real work, described here without client-specific detail.</p>
+      <p class="lede">SSU connects data, field actions, review, automation, and documentation so recurring work becomes easier to operate and safer to change. The four sections below cover property operating systems, operational control systems, software and integration systems, and AI and knowledge systems. All are patterns SSU has built and hardened in real work, described here without client-specific detail.</p>
       <ul class="tag-row" aria-label="System building blocks">
         <li class="tag">Source</li>
         <li class="tag">Workflow</li>
@@ -43,7 +43,7 @@
 
     <section class="section section-dark" aria-labelledby="shipped-heading">
       <div class="section-heading">
-        <p class="eyebrow">Not patterns &mdash; shipped</p>
+        <p class="eyebrow">Not patterns. Shipped</p>
         <h2 id="shipped-heading">These are running right now.</h2>
       </div>
       <p class="section-lede prose-on-dark">The four sections that follow describe the patterns. This is what has actually been built on them, in production, for a real operation.</p>
@@ -55,7 +55,7 @@
         </article>
         <article class="plain-card proof-card">
           <h3>Release control, applied to itself</h3>
-          <p>Versioned source packages, schema versioning, staged QA gates, deployment preflight, rollback references, and approval logs carrying approver and timestamp. Two native macOS applications built, signed and installed &mdash; one shipped through a sequence of Apple-notarized releases.</p>
+          <p>Versioned source packages, schema versioning, staged QA gates, deployment preflight, rollback references, and approval logs carrying approver and timestamp. Two native macOS applications built, signed and installed. One shipped through a sequence of Apple-notarized releases.</p>
           <p><strong>The discipline is not aspirational.</strong> <a class="text-link text-link-light" href="proof.html">The case studies show it under failure <span aria-hidden="true">&rarr;</span></a></p>
         </article>
       </div>
@@ -105,12 +105,12 @@
         <div>
           <h3 class="block-title">Property and location data foundation</h3>
           <h4 class="mini-label">The operating problem</h4>
-          <p>Locations, buildings, units or listings, owners or operating entities, statuses, and resources are described differently in every tracker, form, and folder—so every new tool starts from scratch and drifts out of sync.</p>
+          <p>Locations, buildings, units or listings, owners or operating entities, statuses, and resources are described differently in every tracker, form, and folder, so every new tool starts from scratch and drifts out of sync.</p>
           <h4 class="mini-label">The system</h4>
           <p>A master property directory acts as the upstream authority for the rest of the operating environment: property and location identity, building, unit, and listing relationships, owner or operating-entity records, lifecycle states from onboarding through archive, operating configuration, platform and system identifiers, controlled resource references, tracker eligibility, and created system instances.</p>
           <h4 class="mini-label">The outcome</h4>
           <p class="outcome-line">One verified property setup can support inventory, linens, inspections, expenses, reporting, document generation, and future applications.</p>
-          <p class="continuity-note"><strong>Designed for continuity:</strong> stable identifiers—not display names, sheet rows, or URLs—act as permanent keys, so a property, listing, folder, vendor, or interface label can change without silently breaking downstream workflows.</p>
+          <p class="continuity-note"><strong>Designed for continuity:</strong> stable identifiers, not display names, sheet rows, or URLs, act as permanent keys, so a property, listing, folder, vendor, or interface label can change without silently breaking downstream workflows.</p>
         </div>
       </article>
 
@@ -124,7 +124,7 @@
           <p>A central item catalog with stable item identifiers, product types, sizes, vendors, package data, costs, and active status; bed and sleeping-position rules; required quantities and par logic; current counts and exception states; location-specific variations; purchase quantities and owner-ready summaries; and audit and change history. The catalog, operating rules, location requirements, current counts, and purchase outputs remain distinct but connected.</p>
           <h4 class="mini-label">The outcome</h4>
           <p class="outcome-line">Operating standards and real counts become a traceable, recalculable purchase plan rather than a one-time spreadsheet.</p>
-          <p class="continuity-note"><strong>Designed for continuity:</strong> a product name, link, or package can change without destroying the logic that says why an item is needed—requirements are recalculated, not manually rebuilt.</p>
+          <p class="continuity-note"><strong>Designed for continuity:</strong> a product name, link, or package can change without destroying the logic that says why an item is needed, requirements are recalculated, not manually rebuilt.</p>
         </div>
       </article>
 
@@ -138,7 +138,7 @@
           <p>Standard, seasonal, and property-specific catalogs; stable item identifiers; counting units, par levels, critical-item flags, and reorder rules; count events that replace the observed quantity and receiving events that add incoming quantity, with separate logs for each; low-stock and restock status; shopping and replenishment queues; QR codes, guided forms, and mobile web entry; seasonal lifecycle rules; and employee and admin role separation.</p>
           <h4 class="mini-label">The outcome</h4>
           <p class="outcome-line">Counts and receipts become reliable operational records, with a visible action queue and an audit trail.</p>
-          <p class="continuity-note"><strong>Designed for continuity:</strong> employees see a guided count, receiving, inspection, or issue interface—never backend state tables, formulas, or script configuration. The system records the event and updates only the intended state.</p>
+          <p class="continuity-note"><strong>Designed for continuity:</strong> employees see a guided count, receiving, inspection, or issue interface, never backend state tables, formulas, or script configuration. The system records the event and updates only the intended state.</p>
         </div>
       </article>
 
@@ -163,7 +163,7 @@
           <h4 class="mini-label">The operating problem</h4>
           <p>Recurring financial workflows depend on fragile spreadsheets where one stray edit breaks a calculation, and supporting documents are scattered across inboxes and folders.</p>
           <h4 class="mini-label">The system</h4>
-          <p>A guided monthly workflow spanning manual expense entry, bank-data import, receipt import and document routing, OCR review, draft review, property assignment, reimbursable classification, owner or client adjustments, supporting-evidence review, quality checks, and submission and closeout—with accessible manual-entry paths, workflow guidance, alerts, guardrails, and visible calculation logic.</p>
+          <p>A guided monthly workflow spanning manual expense entry, bank-data import, receipt import and document routing, OCR review, draft review, property assignment, reimbursable classification, owner or client adjustments, supporting-evidence review, quality checks, and submission and closeout, with accessible manual-entry paths, workflow guidance, alerts, guardrails, and visible calculation logic.</p>
           <h4 class="mini-label">The outcome</h4>
           <p class="outcome-line">Recurring financial work becomes a guided, reviewable process with supporting evidence and safer correction paths.</p>
           <p class="continuity-note"><strong>Designed for continuity:</strong> input zones are separated from formula zones, review states are explicit, and corrections follow a safe, recorded path instead of silent edits.</p>
@@ -175,12 +175,12 @@
         <div>
           <h3 class="block-title">Onboarding, offboarding, and controlled property change</h3>
           <h4 class="mini-label">The operating problem</h4>
-          <p>Adding or removing a location touches records, folders, trackers, access, and standards in many places at once—and manual updates miss some of them every time.</p>
+          <p>Adding or removing a location touches records, folders, trackers, access, and standards in many places at once, and manual updates miss some of them every time.</p>
           <h4 class="mini-label">The system</h4>
           <p>Property operations treated as lifecycle systems: initial setup and readiness checks, required records and dependencies, tracker eligibility and creation, folder and resource registration, system-access references, operating exceptions, status transitions, offboarding and archive preservation, and retention of decision and change history.</p>
           <h4 class="mini-label">The outcome</h4>
           <p class="outcome-line">Adding, changing, pausing, or removing a location becomes a controlled workflow rather than a series of disconnected manual updates.</p>
-          <p class="continuity-note"><strong>Designed for continuity:</strong> the same foundation—stable IDs, normalized tables, event histories, explicit roles, and status lifecycles—is designed to carry these workflows into future application modules for property administration, inventory, receiving, inspections, issues, and release review.</p>
+          <p class="continuity-note"><strong>Designed for continuity:</strong> the same foundation of stable IDs, normalized tables, event histories, explicit roles and status lifecycles is designed to carry these workflows into future application modules for property administration, inventory, receiving, inspections, issues, and release review.</p>
         </div>
       </article>
     </section>
@@ -197,9 +197,9 @@
         <div>
           <h3 class="block-title">Source-of-truth architecture and operating registries</h3>
           <h4 class="mini-label">The operating problem</h4>
-          <p>Not every file, workbook, repository, or chat has equal authority—but when everything looks equally current, old material gets mistaken for instruction and conflicts go unnoticed.</p>
+          <p>Not every file, workbook, repository, or chat has equal authority, but when everything looks equally current, old material gets mistaken for instruction and conflicts go unnoticed.</p>
           <h4 class="mini-label">The system</h4>
-          <p>Source maps that identify which system controls each class of information; approved, draft, under-review, superseded, and historical states; update ownership; staleness detection; conflict escalation; and pointers that replace uncontrolled duplicate copies. Supporting registries—project and workstream, resource, tool and automation, version and release, template, instance, decision index, known-issue register, and dependency map—each answer a recurring operating question that would otherwise require guesswork.</p>
+          <p>Source maps that identify which system controls each class of information; approved, draft, under-review, superseded, and historical states; update ownership; staleness detection; conflict escalation; and pointers that replace uncontrolled duplicate copies. Supporting registries cover project and workstream, resource, tool and automation, version and release, template, instance, decision index, known-issue register, and dependency map. Each answers a recurring operating question that would otherwise require guesswork.</p>
           <h4 class="mini-label">The outcome</h4>
           <p class="outcome-line">Operators can identify the current answer and understand why it is current.</p>
           <p class="continuity-note"><strong>Designed for continuity:</strong> current operating state is verified against live systems, not assumed from memory or stale notes.</p>
@@ -211,7 +211,7 @@
         <div>
           <h3 class="block-title">Work queues, decisions, and issue prevention</h3>
           <h4 class="mini-label">The operating problem</h4>
-          <p>Projects stall when nobody can say what the current objective is, what is blocked, which decisions are pending, or what the exact next action should be—and failures repeat because their lessons were never captured.</p>
+          <p>Projects stall when nobody can say what the current objective is, what is blocked, which decisions are pending, or what the exact next action should be, and failures repeat because their lessons were never captured.</p>
           <h4 class="mini-label">The system</h4>
           <p>A continuity structure covering the current objective, verified current state, completed and active work, blockers, risks, decisions pending, deferred work, and the exact next action. When a meaningful failure is found, the system records the observed failure, reproducibility, verified root cause, containment, impacted systems, a prevention rule, required regression coverage, owner, status, and evidence of resolution.</p>
           <h4 class="mini-label">The outcome</h4>
@@ -225,12 +225,12 @@
         <div>
           <h3 class="block-title">DevOps and production controls</h3>
           <h4 class="mini-label">The operating problem</h4>
-          <p>Operational software—workbooks, scripts, governed documents, internal apps—often changes through untraceable patches, so a working system is one edit away from a failure no one can diagnose or undo.</p>
+          <p>Operational software, including workbooks, scripts, governed documents and internal apps, often changes through untraceable patches, so a working system is one edit away from a failure no one can diagnose or undo.</p>
           <h4 class="mini-label">The system</h4>
           <p>Verified baselines before any change: the governing objective, current live baseline, test and production targets, installed and candidate versions, allowed files and forbidden scope, known issues, and the backup and recovery path. Work ships as source-controlled packages with a manifest, version identity, dependency closure, release notes, QA evidence, and a rollback artifact. Releases move through a safe test copy, pre-install validation, an install record, a runtime smoke test, post-install readback, a promotion decision, production verification, and cleanup of test fixtures. Schema manifests define tables, columns, key fields, manual-entry and computed zones, protected ranges, and downstream consumers.</p>
           <h4 class="mini-label">The outcome</h4>
           <p class="outcome-line">Completion is not a tool saying “success.” Completion is the live system behaving as intended, with evidence and a recovery path.</p>
-          <p class="continuity-note"><strong>Designed for continuity:</strong> recovery is designed before a risky change—last-known-good package, backup, restore instructions, and stop conditions for repeated failure, source conflict, or unverifiable results. If a write cannot be verified, the system reports the limitation rather than claiming completion.</p>
+          <p class="continuity-note"><strong>Designed for continuity:</strong> recovery is designed before a risky change: a last-known-good package, a backup, restore instructions, and stop conditions for repeated failure, source conflict, or unverifiable results. If a write cannot be verified, the system reports the limitation rather than claiming completion.</p>
         </div>
       </article>
 
@@ -239,11 +239,11 @@
         <div>
           <h3 class="block-title">Handoffs and technology transfer</h3>
           <h4 class="mini-label">The operating problem</h4>
-          <p>Work handed off as a transcript dump or a folder of files forces the next person—or the next AI session—to reconstruct the project before they can continue it.</p>
+          <p>Work handed off as a transcript dump or a folder of files forces the next person, or the next AI session, to reconstruct the project before they can continue it.</p>
           <h4 class="mini-label">The system</h4>
           <p>Restart-ready handoffs that carry the objective, current state, frozen decisions, assumptions and unknowns, source references, version context, resolved issues, current blockers, accepted exceptions, explicit non-goals, ordered next actions, QA and recovery requirements, and success criteria. Reusable systems can be packaged as portable exports with client-specific names, paths, data, and configuration removed.</p>
           <h4 class="mini-label">The outcome</h4>
-          <p class="outcome-line">The recipient receives an independent system, setup guide, and operating standard—not access to someone else’s environment.</p>
+          <p class="outcome-line">The recipient receives an independent system, setup guide, and operating standard, not access to someone else’s environment.</p>
           <p class="continuity-note"><strong>Designed for continuity:</strong> a proper handoff allows the work to continue safely without the original author in the room.</p>
         </div>
       </article>
@@ -307,12 +307,12 @@
         <div>
           <h3 class="block-title">Modular, provider-flexible local applications</h3>
           <h4 class="mini-label">The operating problem</h4>
-          <p>Tools that hard-wire one vendor, one storage layer, or one AI model turn every provider change into a rebuild—and every credential into a liability.</p>
+          <p>Tools that hard-wire one vendor, one storage layer, or one AI model turn every provider change into a rebuild, and every credential into a liability.</p>
           <h4 class="mini-label">The system</h4>
           <p>Local application architecture with frontend and backend separation; API adapters sharing a common contract; local persistence with file-based attachments; configurable environments; server-side credential handling with no keys embedded in browser code; least-necessary permissions and safe defaults that stop on uncertainty; local-network and private remote access; progressive web-app support with mobile capture and field entry; and replaceable storage and AI-provider layers. Observability is built in: execution logs, error logs, activity logs, system-health records, version and deployment records, and honest reporting of unverified states.</p>
           <h4 class="mini-label">The outcome</h4>
           <p class="outcome-line">A workflow is not unnecessarily bound to one AI model, storage tool, or integration.</p>
-          <p class="continuity-note"><strong>Designed for continuity:</strong> future capabilities—including local models—can arrive behind the same interface without rebuilding the workflow around them.</p>
+          <p class="continuity-note"><strong>Designed for continuity:</strong> future capabilities, including local models, can arrive behind the same interface without rebuilding the workflow around them.</p>
         </div>
       </article>
 
@@ -321,12 +321,12 @@
         <div>
           <h3 class="block-title">Human-approved write systems</h3>
           <h4 class="mini-label">The operating problem</h4>
-          <p>Letting AI edit controlled resources directly turns every suggestion into an unreviewed change—and plain files, structured documents, spreadsheets, and repository code cannot be treated as interchangeable text blobs.</p>
+          <p>Letting AI edit controlled resources directly turns every suggestion into an unreviewed change, and plain files, structured documents, spreadsheets, and repository code cannot be treated as interchangeable text blobs.</p>
           <h4 class="mini-label">The system</h4>
-          <p>A write pattern SSU has engineered end to end: read the current resource, show source and context, generate a proposed change, display a human-reviewable diff, approve or reject—with timeouts defaulting to rejection—write through the correct resource-specific adapter, read back the actual result, compare it with the approved change, and record the model, target, operation, result, and evidence in an audit log.</p>
+          <p>A write pattern SSU has engineered end to end: read the current resource, show source and context, generate a proposed change, display a human-reviewable diff, approve or reject, with timeouts defaulting to rejection, write through the correct resource-specific adapter, read back the actual result, compare it with the approved change, and record the model, target, operation, result, and evidence in an audit log.</p>
           <h4 class="mini-label">The outcome</h4>
           <p class="outcome-line">AI can propose changes to controlled resources while a person retains approval authority over every material change.</p>
-          <p class="continuity-note"><strong>Designed for continuity:</strong> every write is verified by reading the target again—the audit trail records what actually happened, not what was intended.</p>
+          <p class="continuity-note"><strong>Designed for continuity:</strong> every write is verified by reading the target again. The audit trail records what actually happened, not what was intended.</p>
         </div>
       </article>
     </section>
@@ -343,7 +343,7 @@
         <div>
           <h3 class="block-title">Local-first knowledge and retrieval</h3>
           <h4 class="mini-label">The operating problem</h4>
-          <p>Project knowledge scattered across drives, docs, and chat threads cannot be searched with confidence—and a search hit is not the same thing as an authoritative answer.</p>
+          <p>Project knowledge scattered across drives, docs, and chat threads cannot be searched with confidence, and a search hit is not the same thing as an authoritative answer.</p>
           <h4 class="mini-label">The system</h4>
           <p>A local knowledge environment combining markdown-based canonical project knowledge, semantic and keyword retrieval, automatic or manual index refresh, retrieval scoped to the correct knowledge collection, project-specific current state and decision records, relationship analysis as a derived view, and cloud documents represented by controlled pointers where appropriate.</p>
           <h4 class="mini-label">The outcome</h4>
@@ -357,12 +357,12 @@
         <div>
           <h3 class="block-title">Multi-model tooling and AI-assisted project control</h3>
           <h4 class="mini-label">The operating problem</h4>
-          <p>AI tools are useful in the moment, but chat transcripts are not a system of record—context evaporates between sessions, and unverified output can quietly become “truth.”</p>
+          <p>AI tools are useful in the moment, but chat transcripts are not a system of record. Context evaporates between sessions, and unverified output can quietly become “truth.”</p>
           <h4 class="mini-label">The system</h4>
-          <p>A local application pattern that routes work to different AI providers through a shared interface, compares provider responses, maintains persistent project context, stores data locally, keeps credentials server-side, and handles provider outages gracefully—paired with a governed project memory: source hierarchy, current state, decisions, queues, handoffs, QA records, activity logs, tool registries, source-grounded retrieval, and clear role and authority boundaries among AI agents and human decision-makers.</p>
+          <p>A local application pattern that routes work to different AI providers through a shared interface, compares provider responses, maintains persistent project context, stores data locally, keeps credentials server-side, and handles provider outages gracefully, paired with a governed project memory: source hierarchy, current state, decisions, queues, handoffs, QA records, activity logs, tool registries, source-grounded retrieval, and clear role and authority boundaries among AI agents and human decision-makers.</p>
           <h4 class="mini-label">The outcome</h4>
           <p class="outcome-line">Give teams and AI tools the context, authority rules, and evidence needed to continue complex work without starting over.</p>
-          <p class="continuity-note"><strong>Designed for continuity:</strong> durable decisions are promoted into controlled sources with evidence labels and readback requirements—no chat transcript or model memory automatically becomes truth, and consequential actions stay under human review.</p>
+          <p class="continuity-note"><strong>Designed for continuity:</strong> durable decisions are promoted into controlled sources with evidence labels and readback requirements. No chat transcript or model memory automatically becomes truth, and consequential actions stay under human review.</p>
         </div>
       </article>
     </section>
@@ -373,7 +373,7 @@
         <h2 id="evolve-heading">Not trapped in the first tool.</h2>
       </div>
       <div class="prose-stack prose-on-dark">
-        <p>SSU may use spreadsheets, scripts, cloud drives, forms, lightweight web interfaces, local knowledge tools, or other practical components—whatever fits the operation today. The tool is a starting point, not a ceiling.</p>
+        <p>SSU may use spreadsheets, scripts, cloud drives, forms, lightweight web interfaces, local knowledge tools, or other practical components, whatever fits the operation today. The tool is a starting point, not a ceiling.</p>
         <p>A spreadsheet can be a useful operating layer without becoming a permanent limitation. Stable identifiers, normalized tables, event histories, explicit roles, and documented interfaces allow today’s practical system to become tomorrow’s application without rebuilding the operating logic from memory.</p>
         <p>Systems designed to evolve without discarding their history.</p>
       </div>
