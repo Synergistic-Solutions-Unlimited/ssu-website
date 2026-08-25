@@ -45,9 +45,9 @@
     <section class="stat-band" aria-label="Systems in production">
       <ul>
         <li><span class="stat-figure">7</span><span class="stat-label">Operational systems in daily production use</span></li>
-        <li><span class="stat-figure">5</span><span class="stat-label">Property trackers running the same controlled catalog</span></li>
+        <li><span class="stat-figure">28</span><span class="stat-label">Governed items checked on every consumables inspection</span></li>
         <li><span class="stat-figure">2</span><span class="stat-label">Native macOS applications built, signed, installed</span></li>
-        <li><span class="stat-figure">1</span><span class="stat-label">Authenticated portal tying the operation together</span></li>
+        <li><span class="stat-figure">5</span><span class="stat-label">Web properties in production, including an authenticated employee portal</span></li>
       </ul>
     </section>
 
@@ -56,12 +56,17 @@
         <p class="eyebrow">Not patterns. Shipped</p>
         <h2 id="shipped-heading">These are running right now.</h2>
       </div>
-      <p class="section-lede prose-on-dark">The four sections that follow describe the patterns. This is what has actually been built on them, in production, for a real operation.</p>
-      <div class="card-grid card-grid-two">
+      <p class="section-lede prose-on-dark">The software practice began inside infrastructure work, with a document-generation pipeline built in 2024 to deliver a relocation portfolio. Everything below came after it, in other sectors. The four sections that follow describe the patterns; this is what has been built on them.</p>
+      <div class="card-grid">
         <article class="plain-card proof-card">
           <h3>Seven systems, one operation</h3>
           <p>Expense reporting with statement import, receipt OCR and a submission-blocking quality gate, in production since May 2026. A property and location directory the other systems resolve against. Linen inventory across five property trackers with a controlled master catalog. Mobile consumables and production inspection with photographic evidence. A turnover and issue tracker. An authenticated employee portal reached by Workspace sign-in.</p>
           <p><strong>A five-person team runs its month on these</strong>, with no technical specialist among them.</p>
+        </article>
+        <article class="plain-card proof-card">
+          <h3>Web applications people use in the field</h3>
+          <p>An authenticated employee portal reached by Workspace sign-in, with protected interfaces that fail closed to anonymous requests. A consumables inspection application opened from a durable QR code at the property: it runs offline once loaded, stages drafts and unsent reports on the device, requires a photograph against every governed item, and asks for sign-in only at submission. Client submission identifiers and a server-side receipt registry make a repeated send idempotent rather than duplicating a report.</p>
+          <p><strong>A client intake and onboarding application is in build now.</strong> Five web properties are in production across the practice.</p>
         </article>
         <article class="plain-card proof-card">
           <h3>Release control, applied to itself</h3>
