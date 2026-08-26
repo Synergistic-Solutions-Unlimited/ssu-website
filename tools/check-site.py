@@ -13,6 +13,8 @@ Checks, per the standing constraints in the website handoff:
   5. Nav identity         the same links, in the same order, on every page
   6. Em dashes            none anywhere (Josh reads them as an AI tell)
   7. Client anonymity     no blocked client identifier appears on the public site
+  8. Mirrored build       family-care-hub assets all resolve and none are orphaned,
+                          and its copy matches between server HTML and client bundle
 
 Run:  python3 tools/check-site.py
       python3 tools/check-site.py --root /path/to/copy
@@ -164,12 +166,63 @@ def check(root: str) -> list[str]:
         else:
             navs[name] = re.findall(r'<a href="([^"]+)"[^>]*>([^<]*)</a>', nav.group(0))
 
+    fail += check_mirror(root)
+
     if navs:
         reference = navs.get("index.html") or next(iter(navs.values()))
         for name, nav in navs.items():
             if nav != reference:
                 fail.append(f"{name}: primary navigation differs from index.html")
 
+    return fail
+
+
+# Sentences that must read identically in the mirrored page's server HTML and in its
+# client bundle. The page is a React build: text in index.html alone is replaced by the
+# client render, so a copy edit there is invisible to visitors and adds a hydration
+# mismatch. Both mistakes were made by hand before this check existed.
+MIRROR_COPY = [
+    "When my own family needed to coordinate closely and quickly",
+    "An urgent situation in my own family, changing by the hour",
+    "One person was fielding repeated questions",
+]
+
+
+def check_mirror(root: str) -> list[str]:
+    """The mirrored case study is a vendored build, so the usual page checks miss its
+    two real failure modes: copy that only reaches the HTML, and a chunk whose content
+    was edited without renaming it, which leaves browsers on the cached old copy."""
+    base = os.path.join(root, "family-care-hub")
+    index = os.path.join(base, "index.html")
+    assets = os.path.join(base, "assets")
+    if not (os.path.isfile(index) and os.path.isdir(assets)):
+        return []
+
+    fail: list[str] = []
+    html = open(index, encoding="utf-8").read()
+    chunks = {f: open(os.path.join(assets, f), encoding="utf-8").read()
+              for f in sorted(os.listdir(assets)) if f.endswith(".js")}
+
+    # every referenced asset resolves, and nothing on disk is left unreferenced
+    present = set(os.listdir(assets))
+    refs: set[str] = set()
+    for body in [html, *chunks.values()]:
+        refs |= set(re.findall(r"assets/([A-Za-z0-9_.-]+\.(?:js|css))", body))
+    for name in sorted(refs - present):
+        fail.append(f"family-care-hub: references a missing asset {name!r}")
+    for name in sorted(present - refs):
+        fail.append(f"family-care-hub: {name!r} is on disk but nothing references it")
+
+    # copy parity: a sentence in the server HTML must also be in the bundle that renders it
+    bundle = "".join(chunks.values())
+    for line in MIRROR_COPY:
+        in_html, in_bundle = line in html, line in bundle
+        if in_html and not in_bundle:
+            fail.append(f"family-care-hub: {line[:44]!r}... is in index.html but not in any "
+                        "chunk, so the client render will replace it")
+        elif in_bundle and not in_html:
+            fail.append(f"family-care-hub: {line[:44]!r}... is in a chunk but not in "
+                        "index.html, which is a hydration mismatch")
     return fail
 
 
@@ -181,6 +234,14 @@ DEFECTS = [
     ("nav drift", lambda s: s.replace('<a href="about.html">About</a>', "", 1)),
     ("em dash", lambda s: s.replace("The situation", "The — situation", 1)),
     ("client name", lambda s: s.replace("A national wireless carrier", "UScellular", 1)),
+]
+
+# These two mutate the mirrored build rather than the page under test.
+MIRROR_DEFECTS = [
+    ("mirror copy drift", "family-care-hub/index.html",
+     lambda s: s.replace("When my own family needed to coordinate", "When a family needed to coordinate", 1)),
+    ("mirror orphaned chunk", "family-care-hub/index.html",
+     lambda s: s.replace("framework-DjPHiq1u-r2.js", "framework-DjPHiq1u-r9.js")),
 ]
 
 
@@ -216,13 +277,30 @@ def self_test(root: str) -> int:
             else:
                 missed.append(f"{label}: NOT CAUGHT")
 
+    for label, rel, mutate in MIRROR_DEFECTS:
+        with tempfile.TemporaryDirectory() as tmp:
+            copy = os.path.join(tmp, "site")
+            shutil.copytree(root, copy, ignore=shutil.ignore_patterns(".git"))
+            path = os.path.join(copy, rel)
+            src = open(path, encoding="utf-8").read()
+            broken = mutate(src)
+            if broken == src:
+                missed.append(f"{label}: the defect did not apply, the probe is vacuous")
+                continue
+            open(path, "w", encoding="utf-8").write(broken)
+            if check(copy):
+                print(f"  caught: {label}")
+            else:
+                missed.append(f"{label}: NOT CAUGHT")
+
     if missed:
         print("\nSELF-TEST FAILED. The checker cannot detect:", file=sys.stderr)
         for line in missed:
             print(f"  {line}", file=sys.stderr)
         return 1
 
-    print(f"\nSELF-TEST PASSED: {len(DEFECTS)} injected defects, {len(DEFECTS)} caught.")
+    total = len(DEFECTS) + len(MIRROR_DEFECTS)
+    print(f"\nSELF-TEST PASSED: {total} injected defects, {total} caught.")
     return 0
 
 
