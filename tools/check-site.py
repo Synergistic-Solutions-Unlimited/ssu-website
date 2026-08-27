@@ -16,6 +16,7 @@ Checks, per the standing constraints in the website handoff:
                           case study or proof card describing what he built for them
   8. Mirrored build       family-care-hub assets all resolve and none are orphaned,
                           and its copy matches between server HTML and client bundle
+  9. Claim consistency    a registered figure is stated the same on every page
 
 Run:  python3 tools/check-site.py
       python3 tools/check-site.py --root /path/to/copy
@@ -213,6 +214,7 @@ def check(root: str) -> list[str]:
             navs[name] = re.findall(r'<a href="([^"]+)"[^>]*>([^<]*)</a>', nav.group(0))
 
     fail += check_mirror(root)
+    fail += check_claim_consistency(root)
 
     if navs:
         reference = navs.get("index.html") or next(iter(navs.values()))
@@ -272,6 +274,47 @@ def check_mirror(root: str) -> list[str]:
     return fail
 
 
+# A figure stated in several places drifts when only some are updated. That happened
+# twice within an hour: SCOPE made the site a three-application practice and two pages
+# went on saying two, because the fix was verified by grepping for the sentence that had
+# been changed rather than for the claim. Register a claim here and every statement of it
+# has to agree.
+#
+# Each entry is (name, pattern). The pattern must capture the quantity. Words and digits
+# are compared as the same value, so "three" and "3" do not count as a disagreement.
+CLAIM_CONSISTENCY = [
+    ("native applications", re.compile(
+        r"(\b(?:one|two|three|four|five|six|seven|eight|nine|ten|\d+)\b)\s+native\s+(?:mac ?os\s+)?applications?",
+        re.I)),
+    ("operational systems", re.compile(
+        r"(\b(?:one|two|three|four|five|six|seven|eight|nine|ten|\d+)\b)\s+operational\s+systems?", re.I)),
+    ("denials", re.compile(
+        r"(\b(?:one|two|three|four|five|\d+)\b)\s+denials?\b", re.I)),
+]
+
+_WORD_NUM = {"one": "1", "two": "2", "three": "3", "four": "4", "five": "5",
+             "six": "6", "seven": "7", "eight": "8", "nine": "9", "ten": "10"}
+
+
+def check_claim_consistency(root: str) -> list[str]:
+    """Every page must state a registered figure the same way."""
+    seen: dict[str, dict[str, list[str]]] = {name: {} for name, _ in CLAIM_CONSISTENCY}
+    for f in pages(root):
+        src = open(os.path.join(root, f), encoding="utf-8").read()
+        text = re.sub(r"<[^>]+>", " ", src)
+        for name, pattern in CLAIM_CONSISTENCY:
+            for m in pattern.finditer(text):
+                value = m.group(1).lower()
+                value = _WORD_NUM.get(value, value)
+                seen[name].setdefault(value, []).append(f)
+    fail = []
+    for name, values in seen.items():
+        if len(values) > 1:
+            detail = "; ".join(f"{v} in {', '.join(sorted(set(f)))}" for v, f in sorted(values.items()))
+            fail.append(f"claim {name!r} is stated inconsistently: {detail}")
+    return fail
+
+
 DEFECTS = [
     ("unbalanced tag", lambda s: s.replace("</main>", "", 1)),
     ("dead internal link", lambda s: s.replace('href="contact.html"', 'href="nope.html"', 1)),
@@ -280,6 +323,7 @@ DEFECTS = [
     ("nav drift", lambda s: s.replace('<a href="about.html">About</a>', "", 1)),
     ("em dash", lambda s: s.replace("The situation", "The — situation", 1)),
     ("client named in a case study", lambda s: s.replace("A national wireless carrier", "UScellular", 1)),
+    ("a registered figure drifting", lambda s: s.replace("<p class=\"lede\">", "<p class=\"lede\">Two native applications. ", 1)),
     ("former firm named anywhere", lambda s: s.replace("<p class=\"lede\">", "<p class=\"lede\">Wireless Group Consultants. ", 1)),
     # A cleared name is cleared for one page only. Planting it in a different page's
     # case study must still fail, or the exception has quietly become a hole.
