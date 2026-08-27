@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SCOPE: a native macOS and iOS app for project control, time tracking and invoicing, sharing one store across devices through iCloud. Notarised and installed 28 hours after the first commit, with 479 automated tests and a verification step that plants a defect before it believes a pass.">
+  <title>SCOPE | Two Platforms, One Clock | Case Study | SSU</title>
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://thinksynergy.biz/scope.html">
+  <meta property="og:title" content="SCOPE | Two Platforms, One Clock | Case Study | SSU">
+  <meta property="og:description" content="SCOPE: a native macOS and iOS app for project control, time tracking and invoicing, sharing one store across devices through iCloud. Notarised and installed 28 hours after the first commit, with 479 automated tests and a verification step that plants a defect before it believes a pass.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="canonical" href="https://thinksynergy.biz/scope.html">
+  <meta property="og:image" content="https://thinksynergy.biz/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Synergistic Solutions Unlimited: operational systems for land development and property operations. 865 sites developed, 23 states, 13,875 project documents, three denials in twelve years.">
+  <meta property="og:site_name" content="Synergistic Solutions Unlimited">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://thinksynergy.biz/og-image.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Synergistic Solutions Unlimited home"><span class="brand-mark" aria-hidden="true">SSU</span><span>Synergistic Solutions Unlimited</span></a>
+    <nav aria-label="Primary navigation"><a href="index.html">Home</a><a href="infrastructure.html">Infrastructure</a><a href="services.html">Services</a><a href="systems.html">Systems &amp; Automation</a><a href="proof.html">Proof</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
+  </header>
+
+  <main id="main">
+    <header class="page-hero">
+      <p class="eyebrow">Case study &middot; SCOPE</p>
+      <h1>An hour can only be spent once.</h1>
+      <p class="lede">SCOPE is a native macOS and iOS application for project control, time tracking and invoicing, built for my own practice. It runs one clock across both devices, and it refuses to let the same hour be billed twice. That refusal is the reason it exists.</p>
+      <div class="button-row">
+        <a class="button button-primary" href="contact.html">Discuss work like this</a>
+        <a class="button button-secondary" href="systems.html">The rest of the systems practice</a>
+      </div>
+    </header>
+
+    <section class="stat-band" aria-label="The build at a glance">
+      <ul>
+        <li><span class="stat-figure">479</span><span class="stat-label">Automated tests</span></li>
+        <li><span class="stat-figure">81</span><span class="stat-label">Commits</span></li>
+        <li><span class="stat-figure">28</span><span class="stat-label">Hours, first commit to notarised install</span></li>
+        <li><span class="stat-figure">2</span><span class="stat-label">Platforms sharing one store</span></li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="what-heading">
+      <div class="section-heading">
+        <p class="eyebrow">What it is</p>
+        <h2 id="what-heading">Project control that has to survive being on two devices.</h2>
+      </div>
+      <div class="prose-stack">
+        <p>Swift and SwiftUI, with SwiftData underneath and CloudKit between the devices. A menu bar timer on the Mac, home screen and Lock Screen widgets, a Control Centre control, Siri and Shortcuts intents, and a Live Activity on the phone. It tracks time against projects and turns that time into invoices.</p>
+        <p>None of that list is the interesting part. Time trackers are a solved category and I did not build one because the market was short. I built it because every one I have used will happily let me record more hours in a day than the day contains, and because the record of what I actually spent on a client was the one operating number in my own practice that I could not answer.</p>
+      </div>
+    </section>
+
+    <section class="section section-dark" aria-labelledby="rule-heading">
+      <div class="section-heading">
+        <p class="eyebrow">The rule the app enforces</p>
+        <h2 id="rule-heading">Wall clock can only be spent once.</h2>
+      </div>
+      <div class="prose-stack">
+        <p class="prose-on-dark">Most time trackers let you run concurrent timers. Two projects, two clocks, both running through the same afternoon. Two hours of your life become four billable hours, and nothing in the software objects, because each timer is individually telling the truth.</p>
+        <p class="prose-on-dark"><strong>SCOPE runs one clock.</strong> A sitting worked across several projects gets cut into contiguous slices, and the slices have to sum to the sitting before they can be saved. You can divide an afternoon honestly in any proportion you like. You cannot end up with more of it than there was.</p>
+        <p class="prose-on-dark">This is a constraint on me, and it is the whole point. A system that permits an error politely is a system that will eventually produce it, and the person harmed by double billing is a client who trusts an invoice they cannot audit. <strong>It is asserted in tests rather than intended in a design note.</strong></p>
+      </div>
+      <p class="section-footnote"><a class="text-link text-link-light" href="about.html">The standard this comes from <span aria-hidden="true">&rarr;</span></a></p>
+    </section>
+
+    <section class="section" aria-labelledby="sync-heading">
+      <div class="section-heading">
+        <p class="eyebrow">Two devices, one store</p>
+        <h2 id="sync-heading">The sync that reported success while doing nothing.</h2>
+      </div>
+      <div class="prose-stack">
+        <p>Sharing a store between a Mac and a phone is the part of this that was genuinely new to me. It is also where the build went wrong in the most instructive way.</p>
+        <p><strong>Sync was reported working, and it had never worked once.</strong> The evidence for it was that the mirroring tables existed in the local store. Those tables appear when mirroring is <em>configured</em>, not when it succeeds. Underneath, the environment was being chosen silently by build configuration, so the Mac was talking to one database and the phone to another and neither could ever have seen the other. The server had no schema at all.</p>
+        <p><strong>Worse than the failure was the silence.</strong> When the cloud is unavailable the app quietly falls back to a local store and keeps working perfectly, so nothing on screen was wrong. The settings panel reported sync as off, which happened to be true, but it was hard-coded to say off and would have said it forever.</p>
+        <p><strong>What settled it was counting records, not reading logs.</strong> A brand new empty store came up holding 91 time entries and 12 projects, where a fresh seed produces 30 and 4. The surplus arrived from the server with distinct identifiers. A log line saying an export finished is compatible with exporting nothing, because exporting nothing succeeds.</p>
+        <p>Settings now reports the live state and says what to do about it, and the environment is pinned explicitly rather than inherited from how the app happened to be built.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="verify-heading">
+      <div class="section-heading">
+        <p class="eyebrow">The verification standard</p>
+        <h2 id="verify-heading">A check that has never failed is not known to work.</h2>
+      </div>
+      <div class="prose-stack">
+        <p>479 automated tests, and a verification script of nine checks. One of those nine is a control: before a pass is believed, the script plants a defect and requires the detector to catch it. A green result that cannot be made red is not a result.</p>
+        <p><strong>That standard found a real defect in the app's own design system.</strong> Contrast was computed rather than looked at, and prominent button labels turned out to be resolved against a hardcoded dark appearance while their fill followed the live one. Three registers measured about 3.5:1 in light mode. One measured 1.02:1, which is a label almost exactly the colour of the button it sits on.</p>
+        <p>Nobody would have found that by looking, because at 1.02:1 there is nothing to look at. It was fixed and then pinned with a control that replays the shipping values and requires each of them to be rejected, so the defect cannot return quietly.</p>
+        <p class="estimate-note"><strong>Worth saying plainly:</strong> this site was measured by the same method on the same day, and it also had a link at 1.02:1 against its ground. Two codebases, one standard, the same defect class in both. Neither was visible to a structural checker. Both needed a computed ratio.</p>
+      </div>
+    </section>
+
+    <section class="section section-dark" aria-labelledby="different-heading">
+      <div class="section-heading">
+        <p class="eyebrow">What is different about this one</p>
+        <h2 id="different-heading">The first thing I have built that has to be right in two places at once.</h2>
+      </div>
+      <div class="card-grid card-grid-two">
+        <article class="plain-card proof-card">
+          <h3>01 &middot; Two platforms, not one</h3>
+          <p>The other native applications in this practice are macOS only. This is the first with an iPhone in the loop, which means state that has to reconcile across devices rather than live in one place, and a whole class of failure that does not exist in a single-device app.</p>
+        </article>
+        <article class="plain-card proof-card">
+          <h3>02 &middot; Correctness as the feature</h3>
+          <p>The distinguishing behaviour is a refusal. Not a capability the others lack, but an arithmetic guarantee about billing that the category generally declines to make.</p>
+        </article>
+        <article class="plain-card proof-card">
+          <h3>03 &middot; The method arrived first</h3>
+          <p>The 2024 feasibility pipeline was built by someone learning to code inside a deadline. This was built with a verification standard already in hand, which is why the tests and the control step exist from the start rather than after something broke.</p>
+        </article>
+        <article class="plain-card proof-card">
+          <h3>04 &middot; Speed is the consequence, not the goal</h3>
+          <p>Notarised, stapled and installed 28 hours after the first commit. That is not haste. It is what happens when the operating model is decided before the interface, which is the same order of work as everything else on this site.</p>
+        </article>
+      </div>
+      <p class="section-footnote"><a class="text-link text-link-light" href="portfolio-feasibility.html">Where this practice started <span aria-hidden="true">&rarr;</span></a></p>
+    </section>
+
+    <section class="section" aria-labelledby="method-heading">
+      <div class="section-heading">
+        <p class="eyebrow">Mapped to the method</p>
+        <h2 id="method-heading">The same four steps, applied to my own operation.</h2>
+      </div>
+      <div class="method-map">
+        <p class="mini-label">The method</p>
+        <ol>
+          <li><strong>Source of truth.</strong> One store, one clock, and a cloud environment pinned explicitly rather than inherited from the build.</li>
+          <li><strong>Structured operating data.</strong> Time modelled as contiguous slices that must sum to the sitting they came from.</li>
+          <li><strong>Workflows and controls.</strong> Guards against double billing and against billing that never charges, on every path rather than the one the interface happens to use.</li>
+          <li><strong>Tested and handed off.</strong> 479 tests, a verification script that proves its own detector, and a signed, notarised install.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section split-section" aria-labelledby="claims-heading">
+      <div>
+        <p class="eyebrow">What is not claimed</p>
+        <h2 id="claims-heading">Where this stops.</h2>
+      </div>
+      <div class="prose-stack">
+        <p class="estimate-note"><strong>Stated as an estimate:</strong> the hands-on time was roughly four and a quarter hours. That figure comes from inferring working sessions from commit timestamps, a method with a stated error of about 25 percent that was checked against this build as a control and returned within 2 percent. The 28 hours in the band above is wall clock between the first commit and the notarised install, which is a different and much less interesting number.</p>
+        <p><strong>Not distributed.</strong> SCOPE is built for my own practice and is installed on my own machine. It is not for sale and there is no download.</p>
+        <p><strong>The exact figures are exact.</strong> 479 tests, 81 commits, and a notarisation that Gatekeeper reports as an accepted Developer ID notarised source. The mirror round trip was verified by counting records recovered into a fresh store on the Mac. Full device-to-device confirmation, with a write originating on the phone observed arriving on the Mac, is a separate and narrower claim, and I am not making it here.</p>
+        <p>No client appears anywhere in this. Sample data in the application is invented.</p>
+      </div>
+    </section>
+
+    <section class="cta-band" aria-labelledby="scope-contact">
+      <div><p class="eyebrow">Contact</p><h2 id="scope-contact">Bring the number your operation cannot currently answer.</h2></div>
+      <a class="button button-light" href="mailto:jwatson@thinksynergy.biz">jwatson@thinksynergy.biz</a>
+    </section>
+  </main>
+  <footer class="site-footer"><p>&copy; 2026 Synergistic Solutions Unlimited</p><p>Property Operations &middot; Infrastructure &middot; Systems Engineering</p></footer>
+</body>
+</html>
