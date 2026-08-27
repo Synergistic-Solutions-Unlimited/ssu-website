@@ -293,6 +293,15 @@ RETIRED_TERMS = {
     # Registered 2026-08-27. The relocation portfolio was 317 packages across 316
     # sites. "400" was a phantom that sat on the home page while every case page
     # said 316. Josh: "400 is a lot more than 317. That is not honest."
+    # RULED BY JOSH, twice. The 536-of-710 last-saved-by count is a comparative
+    # against named former colleagues. It belongs in application materials and in
+    # a conversation, never on the public site. 2026-08-26: "poor form to post
+    # that as a comparative". 2026-08-27, on finding it published anyway:
+    # "NOOOO do not put that on the site."
+    "536 of those": "the authorship comparative stays off the public site",
+    "536 of them": "the authorship comparative stays off the public site",
+    "last person to have saved": "the authorship comparative stays off the public site",
+    "last person to save the document": "the authorship comparative stays off the public site",
     "four hundred sites": "the relocation portfolio was 317 packages across 316 sites",
     "400 sites": "the relocation portfolio was 317 packages across 316 sites",
     # Registered 2026-08-27. All three native applications are notarised and
@@ -378,6 +387,8 @@ DEFECTS = [
     # The phantom portfolio figure. It sat on the home page while every case page
     # said 316, which is the shape a wrong number takes when only one page is read.
     ("a retired figure coming back", lambda s: s.replace("<p class=\"lede\">", "<p class=\"lede\">Four hundred sites. ", 1)),
+    # The authorship comparative Josh has now ruled off the site twice.
+    ("the authorship comparative coming back", lambda s: s.replace("<p class=\"lede\">", "<p class=\"lede\">536 of those carry me as the last person to have saved the file. ", 1)),
     # A count and the thing it counts drifting apart across pages.
     ("notarisation count drifting", lambda s: s.replace("<p class=\"lede\">", "<p class=\"lede\">Nineteen accepted notarisations. ", 1)),
 ]
