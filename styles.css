@@ -491,3 +491,12 @@ p { margin-top: 0; }
   .eyebrow, .card-label, .mini-label, .practice-label, .case-kicker, .lane-tag,
   .proof-group-label { letter-spacing: .09em; }
 }
+
+/* Delivered-work rows: put the link on its own line, always.
+   `.text-link` carries `margin-top: 14px`, which is right for a link that
+   already sits on its own line and wrong when it lands inline at the end of a
+   sentence -- there it adds leading to that one line and nothing else, so rows
+   sat unevenly depending only on where the sentence happened to wrap. Four of
+   the six looked broken and two looked fine, for no reason a reader could see.
+   Block display makes the wrap point irrelevant. */
+.commitment-list .text-link { display: block; width: fit-content; }
