@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="SCOPE: a native macOS and iOS app for project control, time tracking and invoicing, sharing one store across devices through iCloud. Notarised and installed 28 hours after the first commit, with 479 automated tests and a verification step that plants a defect before it believes a pass.">
+  <meta name="description" content="SCOPE: a native macOS and iOS app for project control, time tracking and invoicing, sharing one store across devices through iCloud. 83 commits, 479 automated tests, and a verification step that plants a defect before it believes a pass.">
   <title>SCOPE | Two Platforms, One Clock | Case Study | SSU</title>
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://thinksynergy.biz/scope.html">
   <meta property="og:title" content="SCOPE | Two Platforms, One Clock | Case Study | SSU">
-  <meta property="og:description" content="SCOPE: a native macOS and iOS app for project control, time tracking and invoicing, sharing one store across devices through iCloud. Notarised and installed 28 hours after the first commit, with 479 automated tests and a verification step that plants a defect before it believes a pass.">
+  <meta property="og:description" content="SCOPE: a native macOS and iOS app for project control, time tracking and invoicing, sharing one store across devices through iCloud. 83 commits, 479 automated tests, and a verification step that plants a defect before it believes a pass.">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="canonical" href="https://thinksynergy.biz/scope.html">
@@ -42,8 +42,8 @@
     <section class="stat-band" aria-label="The build at a glance">
       <ul>
         <li><span class="stat-figure">479</span><span class="stat-label">Automated tests</span></li>
-        <li><span class="stat-figure">81</span><span class="stat-label">Commits</span></li>
-        <li><span class="stat-figure">28</span><span class="stat-label">Hours, first commit to notarised install</span></li>
+        <li><span class="stat-figure">83</span><span class="stat-label">Commits</span></li>
+        <li><span class="stat-figure">28</span><span class="stat-label">Hours, first commit to latest</span></li>
         <li><span class="stat-figure">2</span><span class="stat-label">Platforms sharing one store</span></li>
       </ul>
     </section>
@@ -86,6 +86,32 @@
       </div>
     </section>
 
+    <section class="section" aria-labelledby="merge-heading">
+      <div class="section-heading">
+        <p class="eyebrow">Designing for the merge</p>
+        <h2 id="merge-heading">The design assumes the merge will go wrong.</h2>
+      </div>
+      <div class="prose-stack">
+        <p>iCloud cannot guarantee uniqueness across devices. Two devices offline can both allocate invoice number 14 and the mirror will accept both. So invoice numbers are issued by the application against a stored high-water mark with a duplicate check at issue, rather than by a database constraint that cannot be enforced where it matters.</p>
+        <p>The same problem hits the thing the whole app rests on, which is that <strong>at most one session runs at a time.</strong> Two devices, both offline, can each start a timer, and the merge will faithfully deliver you both. So the reader tolerates it rather than assuming it cannot happen: if more than one open session exists, the most recent start wins and the others close <strong>at the instant the winner started</strong>, which is the last moment they are provably known to have still been running.</p>
+        <p><strong>That detail is a fix for a defect that deleted real hours.</strong> The losing sessions were originally closed at their own start time, which is zero seconds. Every hour they had recorded was erased while the row survived, and a zero-length entry is dropped from unbilled work. Time disappeared without ever becoming a line anyone could question.</p>
+        <p><strong>Elapsed time is never counted, only derived.</strong> No running total is stored anywhere. An entry holds a start and an end, and the duration is computed from them. A crash, a reboot or a flat battery cannot corrupt a number that was never being accumulated.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="loss-heading">
+      <div class="section-heading">
+        <p class="eyebrow">The one that cost real data</p>
+        <h2 id="loss-heading">A migration that moved files, and a log that said it worked.</h2>
+      </div>
+      <div class="prose-stack">
+        <p>Moving the store between container locations originally moved the files rather than copying them. A partial failure left the database without its write-ahead log, and <strong>16 projects and 121 time entries read as zero.</strong> That was my own real data. It was recovered by hand.</p>
+        <p>The migration now copies through a staging directory, verifies byte sizes before anything is removed, and never moves.</p>
+        <p><strong>The worse fault was the logging.</strong> The code reported that it had moved the store unconditionally, while two of three files had failed. A success message that cannot report failure is not reporting anything. Every silently swallowed error in the codebase was swept afterwards, which found two more of the same shape.</p>
+        <p>I include this because a systems page that only lists what worked is a brochure. This one cost me a day's records and the fix was not the interesting part. The interesting part is that nothing told me.</p>
+      </div>
+    </section>
+
     <section class="section" aria-labelledby="verify-heading">
       <div class="section-heading">
         <p class="eyebrow">The verification standard</p>
@@ -115,11 +141,11 @@
         </article>
         <article class="plain-card proof-card">
           <h3>03 &middot; The method arrived first</h3>
-          <p>The 2024 feasibility pipeline was built by someone learning to code inside a deadline. This was built with a verification standard already in hand, which is why the tests and the control step exist from the start rather than after something broke.</p>
+          <p>The 2024 feasibility pipeline was built by someone learning to code inside a deadline. This was built with a verification standard already in hand, which is why the tests and the control step exist from the start rather than after something broke. Every prior project on this site had me at the keyboard throughout. This one did not.</p>
         </article>
         <article class="plain-card proof-card">
-          <h3>04 &middot; Speed is the consequence, not the goal</h3>
-          <p>Notarised, stapled and installed 28 hours after the first commit. That is not haste. It is what happens when the operating model is decided before the interface, which is the same order of work as everything else on this site.</p>
+          <h3>04 &middot; Most of it ran unattended</h3>
+          <p>First commit on the evening of 25 August. Notarised, stapled and installed on the evening of the 26th, 27 hours and 26 minutes later. That is not haste. It is what happens when the operating model is decided before the interface, which is the same order of work as everything else on this site.</p>
         </article>
       </div>
       <p class="section-footnote"><a class="text-link text-link-light" href="portfolio-feasibility.html">Where this practice started <span aria-hidden="true">&rarr;</span></a></p>
@@ -147,9 +173,10 @@
         <h2 id="claims-heading">Where this stops.</h2>
       </div>
       <div class="prose-stack">
-        <p class="estimate-note"><strong>Stated as an estimate:</strong> the hands-on time was roughly four and a quarter hours. That figure comes from inferring working sessions from commit timestamps, a method with a stated error of about 25 percent that was checked against this build as a control and returned within 2 percent. The 28 hours in the band above is wall clock between the first commit and the notarised install, which is a different and much less interesting number.</p>
+        <p class="estimate-note"><strong>No hands-on hours figure is given, and that is deliberate.</strong> I have a method that infers working sessions from commit timestamps, and it is good to about 25 percent on my other projects. It does not work here. Those projects had a person at the keyboard for the whole sitting. On this one I authorised the work, said I was going to bed, and the build continued without me. A method calibrated on attended work reports the wrong thing about unattended work, so rather than publish a number I would have to qualify into meaninglessness, I am publishing the two figures that are simply true: 28 hours and 21 minutes between the first commit and the latest, and 83 commits. A large share of that was unattended.</p>
         <p><strong>Not distributed.</strong> SCOPE is built for my own practice and is installed on my own machine. It is not for sale and there is no download.</p>
         <p><strong>The exact figures are exact.</strong> 479 tests, 81 commits, and a notarisation that Gatekeeper reports as an accepted Developer ID notarised source. The mirror round trip was verified by counting records recovered into a fresh store on the Mac. Full device-to-device confirmation, with a write originating on the phone observed arriving on the Mac, is a separate and narrower claim, and I am not making it here.</p>
+        <p><strong>Also not claimed, and worth naming rather than omitting.</strong> Several AI providers are wired in as selectable so somebody else could choose one; only Google's and the on-device model have been exercised. The invoice narration exists and stays marked as proposed until accepted, and has never produced a real invoice line. There are no performance figures against a real store. A dense sample invoice runs to two pages. The iOS app is not notarised, because iOS applications are not.</p>
         <p>No client appears anywhere in this. Sample data in the application is invented.</p>
       </div>
     </section>
