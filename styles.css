@@ -138,7 +138,12 @@ p { margin-top: 0; }
 .card-grid-five .plain-card { min-height: 190px; padding: 26px; }
 
 .tag-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 34px 0 0; padding: 0; list-style: none; }
-.tag { padding: .34rem .85rem; border: 1px solid var(--line); border-radius: 999px; color: var(--teal-dark); font-size: .8rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.tag { display: inline-block; padding: .34rem .85rem; border: 1px solid transparent; border-radius: 999px; background: rgba(20, 34, 33, .06); color: var(--teal-dark); font-size: .8rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+/* A bordered pill sitting under two real buttons reads as a button. Labels lost the
+   outline and took a fill; only the pills that actually navigate keep the outline, and
+   they gain a hover so the affordance is earned rather than implied. */
+.tag-link { border-color: var(--line); background: transparent; text-decoration: none; transition: background .12s ease, color .12s ease, border-color .12s ease; }
+.tag-link:hover { border-color: var(--ink); background: var(--ink); color: var(--paper-bright); }
 
 .system-block h2 { margin-bottom: 26px; }
 .system-block .mini-label { margin: 26px 0 8px; color: var(--teal); font-size: .8rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; }
@@ -315,7 +320,9 @@ p { margin-top: 0; }
 .section-dark .text-link,
 .section-dark .mini-label,
 .section-dark .tag { color: var(--lime); }
-.section-dark .tag { border-color: rgba(255, 255, 255, .3); }
+.section-dark .tag { background: rgba(255, 255, 255, .1); border-color: transparent; }
+.section-dark .tag-link { background: transparent; border-color: rgba(255, 255, 255, .3); }
+.section-dark .tag-link:hover { background: var(--lime); border-color: var(--lime); color: var(--ink); }
 
 /* A light island inside a dark ground states its own ink rather than inheriting
    white onto cream, which is how a whole note measured 1.02:1. Twice: the estimate
@@ -371,4 +378,10 @@ p { margin-top: 0; }
 @media (max-width: 820px) {
   .record-list li { grid-template-columns: 1fr; gap: 8px; padding: 26px 0; }
   .record-when { margin: 0; }
+}
+
+
+/* The domain pills are navigation on a phone as much as on a desktop. */
+@media (max-width: 820px) {
+  .tag-link { min-height: 44px; display: inline-flex; align-items: center; }
 }
