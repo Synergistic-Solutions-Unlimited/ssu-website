@@ -59,8 +59,14 @@ p { margin-top: 0; }
 .section-heading { display: grid; grid-template-columns: minmax(180px, .42fr) minmax(0, 1fr); gap: 48px; align-items: start; margin-bottom: 56px; }
 .section-heading h2 { max-width: 850px; }
 .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-.service-card, .plain-card { min-height: 280px; padding: 30px; border: 1px solid rgba(255,255,255,.19); border-radius: var(--radius); }
-.service-card p:last-child, .plain-card p:last-child { color: rgba(255,255,255,.72); }
+.service-card, .plain-card { min-height: 280px; padding: 30px; border: 1px solid var(--line); border-radius: var(--radius); }
+.service-card p:last-child, .plain-card p:last-child { color: var(--ink-soft); }
+/* These two are dark-ground components by origin: their border and their closing
+   paragraph were hardcoded white, so putting one on paper produced 1.13:1. The white
+   values now belong to the dark ground rather than to the component, which is the same
+   correction already applied to .estimate-note and .method-map. */
+.section-dark .service-card, .section-dark .plain-card { border-color: rgba(255,255,255,.19); }
+.section-dark .service-card p:last-child, .section-dark .plain-card p:last-child { color: rgba(255,255,255,.72); }
 .card-number { margin-bottom: 76px; color: var(--teal); font-size: .8rem; font-weight: 800; letter-spacing: .16em; }
 .plain-card { min-height: 210px; }
 

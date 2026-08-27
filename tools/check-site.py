@@ -290,6 +290,9 @@ def check_mirror(root: str) -> list[str]:
 # said something else. Checked against the rendered text, not the source.
 RETIRED_TERMS = {
     "systems engineering": "the second practice is named Systems & Automation",
+    # Three names in three places read as three practices. One name, everywhere.
+    "systems, automation and ai": "the practice is named Systems & Automation; AI belongs in the description",
+    "systems & automation and ai": "the practice is named Systems & Automation",
 }
 
 
