@@ -312,9 +312,15 @@ p { margin-top: 0; }
 .section-dark .tag { border-color: rgba(255, 255, 255, .3); }
 
 /* A light island inside a dark ground states its own ink rather than inheriting
-   white onto cream, which is how a whole note measured 1.02:1. */
+   white onto cream, which is how a whole note measured 1.02:1. Twice: the estimate
+   note, then the method map, when one was first placed on a dark section. Any future
+   component that paints its own light fill belongs in this list on the day it is
+   written, not on the day it is measured. */
 .estimate-note { color: var(--ink); }
 .estimate-note a { color: var(--teal-dark); }
+.method-map { color: var(--ink); }
+.method-map li, .method-map strong { color: var(--ink); }
+.method-map a { color: var(--teal-dark); }
 
 /* Tap targets. Nav links measured 33px and the brand 38px against the 44pt
    mobile minimum, on every page. The min-height creates the height, and the row

@@ -150,7 +150,7 @@
         <article class="plain-card proof-card">
           <h3>SCOPE: project control, on the Mac and the phone</h3>
           <p>A native macOS and iOS application for time tracking, project control and invoicing, sharing one store across devices. It runs a single clock and requires a sitting split across projects to sum back to the sitting, so the same hour cannot be billed twice.</p>
-          <p><strong>State:</strong> signed, <strong>notarised, stapled and installed</strong>, 27 hours and 26 minutes after the first commit. 83 commits, 479 automated tests, and a verification script that plants a defect and requires its own detector to catch it before a pass is believed.</p>
+          <p><strong>State:</strong> first <strong>notarised, stapled and installed at 21:39 on 26 August 2026</strong>, 27 hours after the first commit. 87 commits and 497 automated tests as of the 27th, plus a verification script that plants a defect and requires its own detector to catch it before a pass is believed. The build currently on my machine is a later one, Developer ID signed and awaiting notarisation.</p>
           <p><strong>Built for my own practice.</strong> Not distributed. <a class="text-link text-link-light" href="scope.html">The build, and the sync that reported success while doing nothing <span aria-hidden="true">&rarr;</span></a></p>
         </article>
         <article class="plain-card proof-card">
@@ -161,9 +161,9 @@
         </article>
         <article class="plain-card proof-card">
           <h3>Lucid: native macOS writing application</h3>
-          <p>An editor with an assistant surface that works inside other applications, supporting local models and multiple cloud providers, with credentials in the system Keychain and tracked changes on every suggestion.</p>
-          <p><strong>State:</strong> shipped through a sequence of <strong>Apple-notarized, Gatekeeper-accepted releases</strong>, each one extraction-verified and installed. Not yet publicly distributed.</p>
-          <p><strong>Operational result:</strong> in daily use, which is where its remaining defects surface.</p>
+          <p>An editor with an assistant surface that works inside other applications, with credentials in the system Keychain and tracked changes on every suggestion. <strong>Three inference paths proven end to end</strong>, a local model, an OpenAI-compatible gateway, and Apple’s on-device model. Three more are implemented and have never made an observed call, so they are not claimed.</p>
+          <p><strong>State:</strong> version 0.1.16 installed, Gatekeeper-accepted as a notarised Developer ID source with a valid ticket. <strong>17 submissions accepted by Apple’s notary service.</strong> 310 tests executed with 0 failures and 8 loud skips, the skips being the cloud provider pairs, which refuse to claim what they cannot check. Not publicly distributed, and nobody other than me has run it.</p>
+          <p><strong>What using it actually changed was the review process, not the software.</strong> On both occasions I have used it on real work, I found something no review had, including a panel that could not be dismissed by any documented path. A Gate-2 review had flagged that and ranked it cosmetic. Contact with a user was what corrected the severity judgement.</p>
         </article>
       </div>
       <p class="section-footnote"><a class="text-link text-link-light" href="contact.html">Discuss the work in front of you <span aria-hidden="true">→</span></a></p>
