@@ -12,7 +12,8 @@ Checks, per the standing constraints in the website handoff:
   4. CSS classes          every class used in HTML is defined in styles.css
   5. Nav identity         the same links, in the same order, on every page
   6. Em dashes            none anywhere (Josh reads them as an AI tell)
-  7. Client anonymity     no blocked client identifier appears on the public site
+  7. Client anonymity     clients may be named as relationships, never inside a
+                          case study or proof card describing what he built for them
   8. Mirrored build       family-care-hub assets all resolve and none are orphaned,
                           and its copy matches between server HTML and client bundle
 
@@ -38,19 +39,36 @@ VOID = {
     "link", "meta", "param", "source", "track", "wbr",
 }
 
-# Blocked on the public site until contract due diligence completes. His resume does
-# name them; that asymmetry is deliberate. Do not harmonize the two.
-BLOCKED_CLIENTS = [
+# Josh's rule, 2026-08-27. Two tiers, because a blanket ban stopped matching policy.
+#
+#   The RELATIONSHIPS are nameable. Carriers and tower companies he worked for can
+#   appear on the site.
+#
+#   What he BUILT FOR THEM is not. The documentation standards two carriers adopted,
+#   and the relocation automation, stay unattributed. He will name them in person.
+#
+# So client names are refused only where the page is telling the story of something he
+# made: inside a case study or proof card anywhere, and on the two case-study pages
+# outright. A carrier named in a portfolio card is fine; the same carrier named beside
+# the standard it adopted is not.
+CLIENT_NAMES = [
     "uscellular", "u.s. cellular", "us cellular",
-    "at&t", "at &amp; t", "t-mobile", "tmobile",
-    "verizon", "gogo", "firstnet", "towercom",
-    "king street", "vanguard elite", "vem global",
-    # Tower operators and the former firm, added 2026-08-26 when the resume and the
-    # LinkedIn profile became source material for the services copy. Naming the firm
-    # is the exact thing the pending due diligence covers.
-    "american tower", "crown castle", "sba communications", "horvath",
-    "craig & associates", "craig and associates", "wireless group",
+    "at&t", "at &amp; t", "t-mobile", "tmobile", "verizon", "gogo",
+    "firstnet", "towercom", "american tower", "crown castle", "horvath",
+    "craig & associates", "craig and associates", "king street", "vanguard elite",
+    "vem global",
 ]
+
+# Never, anywhere. Naming the former firm is the exact thing the pending contract
+# due diligence with Josh's former business partner covers. He has not cleared it.
+FIRM_BLOCKED = ["wireless group"]
+
+# Pages that exist only to tell the story of something he built.
+CASE_PAGES = {"portfolio-feasibility.html", "property-operations.html"}
+
+# Blocks that tell that story on any other page.
+STORY_BLOCK = re.compile(
+    r'<article class="[^"]*(?:case-study|proof-card)[^"]*">(.*?)</article>', re.S)
 
 
 def pages(root: str) -> list[str]:
@@ -128,11 +146,21 @@ def check(root: str) -> list[str]:
                 line = src[: src.index(marker)].count("\n") + 1
                 fail.append(f"{name}: em dash at line {line}")
 
-        # 7. client anonymity
+        # 7. client anonymity, per the two-tier rule above
         lowered = src.lower()
-        for client in BLOCKED_CLIENTS:
-            if client in lowered:
-                fail.append(f"{name}: blocked client identifier {client!r}")
+        for firm in FIRM_BLOCKED:
+            if firm in lowered:
+                fail.append(f"{name}: {firm!r} is blocked everywhere, pending due diligence")
+        if os.path.basename(name) in CASE_PAGES:
+            scopes = [("page", lowered)]
+        else:
+            scopes = [("case study or proof card", m.group(1).lower())
+                      for m in STORY_BLOCK.finditer(src)]
+        for where, text in scopes:
+            for client in CLIENT_NAMES:
+                if client in text:
+                    fail.append(f"{name}: client {client!r} named inside a {where}. "
+                                "Relationships are nameable; what he built for them is not.")
 
         if mirrored:
             continue
@@ -238,7 +266,8 @@ DEFECTS = [
     ("undefined class", lambda s: s.replace('class="lede"', 'class="lede undefined-xyz"', 1)),
     ("nav drift", lambda s: s.replace('<a href="about.html">About</a>', "", 1)),
     ("em dash", lambda s: s.replace("The situation", "The — situation", 1)),
-    ("client name", lambda s: s.replace("A national wireless carrier", "UScellular", 1)),
+    ("client named in a case study", lambda s: s.replace("A national wireless carrier", "UScellular", 1)),
+    ("former firm named anywhere", lambda s: s.replace("<p class=\"lede\">", "<p class=\"lede\">Wireless Group Consultants. ", 1)),
 ]
 
 # These two mutate the mirrored build rather than the page under test.
