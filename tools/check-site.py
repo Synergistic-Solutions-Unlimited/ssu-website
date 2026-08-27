@@ -45,6 +45,11 @@ BLOCKED_CLIENTS = [
     "at&t", "at &amp; t", "t-mobile", "tmobile",
     "verizon", "gogo", "firstnet", "towercom",
     "king street", "vanguard elite", "vem global",
+    # Tower operators and the former firm, added 2026-08-26 when the resume and the
+    # LinkedIn profile became source material for the services copy. Naming the firm
+    # is the exact thing the pending due diligence covers.
+    "american tower", "crown castle", "sba communications", "horvath",
+    "craig & associates", "craig and associates", "wireless group",
 ]
 
 
