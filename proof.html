@@ -46,10 +46,10 @@
         <p class="case-kicker">Speed under deadline &middot; Where the practice started</p>
         <h2>400 sites, 60 days, three days to build the answer.</h2>
         <p class="case-lede">A national wireless carrier issued a portfolio of nearly 400 relocation candidates and gave 60 days to return feasibility and permitting recommendations on every one of them. Assembling that by hand was not achievable in the time available.</p>
-        <p>The carrier's site database was exported as the single source of truth. 315 candidates were plotted as geospatial points. Python generated review radii sized by market classification: half a mile urban, one mile rural. A macro-enabled Word template built the folder structure and a pre-populated feasibility analysis for every site.</p>
+        <p>The carrier's site list was synthesised with spatial data: coordinates, ground elevation, and urban or rural classification driving how large each search area needed to be. Python generated a review radius per candidate on that logic, half a mile urban and one mile rural, and a macro-enabled Word template produced the folder structure and a pre-populated feasibility analysis for every site.</p>
         <p>Each generated document arrived already carrying its site number and name, state and jurisdiction, coordinates, ground elevation, existing tower height and structure type, carrier centerline and height above ground, and review radius, plus structured sections for search-area feasibility, permitting paths split between raw land and colocation, feasibility maps, and the relevant zoning ordinance excerpts.</p>
-        <p><strong>317 feasibility packages across 316 sites, delivered on schedule.</strong> The pipeline was built in three days by an operator with no prior programming experience.</p>
-        <p>Only the attributes the automation actually required left the client's system: coordinates, structure height, city, state. Nothing else was exported.</p>
+        <p><strong>317 feasibility packages across 316 sites, delivered on schedule.</strong> The pipeline was built in three days by an operator with no prior programming experience. The counts differ because they measure different stages: a portfolio of candidates issued, the subset carried into production, and the documents generated for them.</p>
+        <p><strong>The analysis used four attributes.</strong> Coordinates, structure height, city, state. That was what the spatial logic required and it is all the pipeline ever touched, decided before the code was written rather than reviewed afterwards.</p>
 
         <table class="evidence-table">
           <caption>The three-day build is corroborated by file timestamps, not recollection. Artifact names and client identifiers withheld; detail available on request.</caption>
@@ -58,7 +58,7 @@
           </thead>
           <tbody>
             <tr><td>Oct 7, 2024</td><td>Executed scope of work</td><td>Engagement scoped</td></tr>
-            <tr><td>Oct 22, 2024</td><td>Carrier site database export</td><td>Source of truth established</td></tr>
+            <tr><td>Oct 22, 2024</td><td>Carrier site list received</td><td>Source of truth established</td></tr>
             <tr><td>Oct 22, 2024</td><td>KML containing 315 review-radius polygons</td><td>Python radius generation working</td></tr>
             <tr><td>Oct 23, 2024</td><td>Folder-generation macro</td><td>Directory structure automated</td></tr>
             <tr><td>Oct 24, 2024</td><td>KML containing 315 site placemarks</td><td>Candidates plotted</td></tr>
@@ -72,8 +72,8 @@
         <div class="method-map">
           <p class="mini-label">Mapped to the method</p>
           <ol>
-            <li><strong>Source of truth.</strong> The carrier's own database, exported once, treated as authoritative.</li>
-            <li><strong>Structured operating data.</strong> 315 candidates as geospatial points with market-classified review radii.</li>
+            <li><strong>Source of truth.</strong> The carrier's own site list, treated as authoritative rather than re-keyed.</li>
+            <li><strong>Structured operating data.</strong> Every candidate as a geospatial point with a market-classified review radius.</li>
             <li><strong>Workflows and controls.</strong> Radius generation and document assembly automated, with one template governing every output.</li>
             <li><strong>Tested and handed off.</strong> 317 packages delivered against a fixed deadline.</li>
           </ol>

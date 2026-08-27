@@ -301,6 +301,11 @@ CLAIM_CONSISTENCY = [
         r"(\b(?:one|two|three|four|five|six|seven|eight|nine|ten|\d+)\b)\s+operational\s+systems?", re.I)),
     ("denials", re.compile(
         r"(\b(?:one|two|three|four|five|\d+)\b)\s+denials?\b", re.I)),
+    # Registered 2026-08-27 after this figure was corrected on three pages and survived
+    # on a fourth, where Josh spotted it. The hours-to-first-notarised-build claim.
+    ("hours to first notarised build", re.compile(
+        r"(\b(?:one|two|three|four|five|six|seven|eight|nine|ten|\d+)\b)\s+hours?\s+"
+        r"(?:and\s+\d+\s+minutes\s+)?(?:after the first commit|to the first notarised)", re.I)),
 ]
 
 _WORD_NUM = {"one": "1", "two": "2", "three": "3", "four": "4", "five": "5",

@@ -68,12 +68,12 @@
       </div>
       <div class="card-grid card-grid-two">
         <article class="plain-card proof-card">
-          <h3>01 &middot; The database, exported once</h3>
-          <p>The carrier's own site database was exported and treated as authoritative. Nothing was retyped, and no second version of the truth was created for the project to drift against.</p>
+          <h3>01 &middot; One source of truth, not re-keyed</h3>
+          <p>The carrier's own site list was treated as authoritative. Nothing was retyped, so no second version of the truth existed for the project to drift against, and nobody spent the portfolio transcribing what the client already held.</p>
         </article>
         <article class="plain-card proof-card">
-          <h3>02 &middot; Candidates as geospatial points</h3>
-          <p>315 candidates plotted as points, then Python generated a review radius around each one sized by market classification: half a mile urban, one mile rural. The search area stopped being a judgment call made 315 separate times.</p>
+          <h3>02 &middot; The site list, synthesised with spatial data</h3>
+          <p>Coordinates, ground elevation, and urban or rural classification, combined so the size of each search area followed from the site's own characteristics rather than from someone's judgement. Python generated the radius on that logic, half a mile urban and one mile rural. The search area stopped being a decision made hundreds of separate times.</p>
         </article>
         <article class="plain-card proof-card">
           <h3>03 &middot; Structure generated, not created</h3>
@@ -97,8 +97,8 @@
         <h2 id="privacy-heading">Only what the automation required left their system.</h2>
       </div>
       <div class="prose-stack">
-        <p>Coordinates, structure height, city, state. Nothing else was exported. A portfolio-scale automation is an easy place to pull a whole database because it is convenient to have everything on hand, and that convenience is how client data ends up somewhere nobody decided to put it.</p>
-        <p>The scope of the export was decided before the pipeline was written, not audited afterward.</p>
+        <p><strong>The analysis used four attributes.</strong> Coordinates, structure height, city, state. That is what the spatial logic required and it is all the pipeline ever touched. A portfolio-scale automation is an easy place to reach for more than you need, because having everything on hand is convenient, and that convenience is how client information ends up somewhere nobody decided to put it.</p>
+        <p>What the pipeline would use was decided before it was written, not reviewed afterwards.</p>
       </div>
     </section>
 
@@ -114,7 +114,7 @@
         </thead>
         <tbody>
           <tr><td>Oct 7, 2024</td><td>Executed scope of work</td><td>Engagement scoped</td></tr>
-          <tr><td>Oct 22, 2024</td><td>Carrier site database export</td><td>Source of truth established</td></tr>
+          <tr><td>Oct 22, 2024</td><td>Carrier site list received</td><td>Source of truth established</td></tr>
           <tr><td>Oct 22, 2024</td><td>KML containing 315 review-radius polygons</td><td>Python radius generation working</td></tr>
           <tr><td>Oct 23, 2024</td><td>Folder-generation macro</td><td>Directory structure automated</td></tr>
           <tr><td>Oct 24, 2024</td><td>KML containing 315 site placemarks</td><td>Candidates plotted</td></tr>
@@ -129,7 +129,7 @@
         <h2 id="result-heading">The portfolio came back on schedule, and the practice changed shape.</h2>
       </div>
       <div class="prose-stack">
-        <p class="prose-on-dark"><strong>317 feasibility packages across 316 sites, delivered inside the 60-day window.</strong> The client received a portfolio in which every site was documented the same way, so the recommendations could be compared against each other rather than read one at a time as separate documents by separate hands.</p>
+        <p class="prose-on-dark"><strong>317 feasibility packages across 316 sites, delivered inside the 60-day window.</strong> The figures on this page count three different stages: nearly 400 candidates issued in the portfolio, the subset carried into production, and the documents generated for them. The client received a portfolio in which every site was documented the same way, so the recommendations could be compared against each other rather than read one at a time as separate documents by separate hands.</p>
         <p class="prose-on-dark"><strong>The filing convention survived the project.</strong> Structure that is generated does not decay the way structure that depends on discipline does. Every site landed where the next person would look for it.</p>
         <p class="prose-on-dark"><strong>The correction cost went to near zero.</strong> One template governing every output means a defect found at site 200 is fixed once, not 200 times, and the fix reaches sites 1 through 199 on the next run.</p>
         <p class="prose-on-dark"><strong>This is where the software practice started.</strong> The pipeline was written inside infrastructure work to deliver an infrastructure portfolio. It was not a career change. It was the same problem the land work had always presented, which is how to make something repeatable and hand it to someone else, answered with a different tool. Everything I have built since is downstream of these three days.</p>
@@ -145,8 +145,8 @@
       <div class="method-map">
         <p class="mini-label">The method</p>
         <ol>
-          <li><strong>Source of truth.</strong> The carrier's own database, exported once, treated as authoritative.</li>
-          <li><strong>Structured operating data.</strong> 315 candidates as geospatial points with market-classified review radii.</li>
+          <li><strong>Source of truth.</strong> The carrier's own site list, treated as authoritative rather than re-keyed.</li>
+          <li><strong>Structured operating data.</strong> Every candidate as a geospatial point, its review radius derived from elevation and market classification.</li>
           <li><strong>Workflows and controls.</strong> Radius generation and document assembly automated, with one template governing every output.</li>
           <li><strong>Tested and handed off.</strong> 317 packages delivered against a fixed deadline.</li>
         </ol>
