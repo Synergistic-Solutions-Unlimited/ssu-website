@@ -290,6 +290,16 @@ def check_mirror(root: str) -> list[str]:
 # said something else. Checked against the rendered text, not the source.
 RETIRED_TERMS = {
     "systems engineering": "the second practice is named Systems & Automation",
+    # Registered 2026-08-27. The relocation portfolio was 317 packages across 316
+    # sites. "400" was a phantom that sat on the home page while every case page
+    # said 316. Josh: "400 is a lot more than 317. That is not honest."
+    "four hundred sites": "the relocation portfolio was 317 packages across 316 sites",
+    "400 sites": "the relocation portfolio was 317 packages across 316 sites",
+    # Registered 2026-08-27. All three native applications are notarised and
+    # installed. This sentence claimed two of them were still waiting.
+    "await notarization": "all three native applications are notarised and installed",
+    "await notarisation": "all three native applications are notarised and installed",
+    "both native applications": "there are three native applications, not two",
     # Three names in three places read as three practices. One name, everywhere.
     "systems, automation and ai": "the practice is named Systems & Automation; AI belongs in the description",
     "systems & automation and ai": "the practice is named Systems & Automation",
@@ -309,6 +319,12 @@ CLAIM_CONSISTENCY = [
     ("hours to first notarised build", re.compile(
         r"(\b(?:one|two|three|four|five|six|seven|eight|nine|ten|\d+)\b)\s+hours?\s+"
         r"(?:and\s+\d+\s+minutes\s+)?(?:after the first commit|to the first notarised)", re.I)),
+    # Registered 2026-08-27. Three pages said 18 accepted notarisations *followed*
+    # the first one, which totals 19. The audited figure is 19 submissions, one
+    # refused, 18 accepted in all. A count and the thing it counts drifted apart.
+    ("accepted notarisations", re.compile(
+        r"(\b(?:sixteen|seventeen|eighteen|nineteen|twenty|\d+)\b)\s+"
+        r"(?:more\s+)?accepted\s+notarisations?", re.I)),
 ]
 
 _WORD_NUM = {"one": "1", "two": "2", "three": "3", "four": "4", "five": "5",
@@ -359,6 +375,11 @@ DEFECTS = [
     # A cleared name is cleared for one page only. Planting it in a different page's
     # case study must still fail, or the exception has quietly become a hole.
     ("cleared name reused on another page", lambda s: s.replace("A national wireless carrier", "FirstNet", 1)),
+    # The phantom portfolio figure. It sat on the home page while every case page
+    # said 316, which is the shape a wrong number takes when only one page is read.
+    ("a retired figure coming back", lambda s: s.replace("<p class=\"lede\">", "<p class=\"lede\">Four hundred sites. ", 1)),
+    # A count and the thing it counts drifting apart across pages.
+    ("notarisation count drifting", lambda s: s.replace("<p class=\"lede\">", "<p class=\"lede\">Nineteen accepted notarisations. ", 1)),
 ]
 
 # These two mutate the mirrored build rather than the page under test.
