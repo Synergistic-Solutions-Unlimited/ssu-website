@@ -218,6 +218,7 @@ def check(root: str) -> list[str]:
     fail += check_claim_consistency(root)
     fail += check_retired_terms(root)
     fail += check_head(root)
+    fail += check_type_and_links(root)
 
     if navs:
         reference = navs.get("index.html") or next(iter(navs.values()))
@@ -362,6 +363,41 @@ def check_retired_terms(root: str) -> list[str]:
 
 TITLE_MAX = 70   # Google truncates a result title around here.
 
+# HIG desktop minimum text size is 10pt. At a 16px root that is 0.8333rem, so
+# 0.84rem is the smallest size allowed to ship. Registered 2026-08-27 after an
+# audit found 21 declarations between 0.68rem and 0.82rem -- the whole eyebrow,
+# label, tag and footer family sitting between 8.6pt and 9.8pt.
+TYPE_FLOOR_REM = 0.84
+
+
+def check_type_and_links(root: str) -> list[str]:
+    """Two rules the eye does not catch but a reader feels."""
+    fail = []
+
+    css = open(os.path.join(root, "styles.css"), encoding="utf-8").read()
+    for m in re.finditer(r"font-size:\s*(0?\.\d+)rem", css):
+        if float(m.group(1)) < TYPE_FLOOR_REM:
+            line = css[:m.start()].count("\n") + 1
+            fail.append(
+                f"styles.css:{line}: font-size {m.group(1)}rem is below the "
+                f"{TYPE_FLOOR_REM}rem floor (HIG desktop minimum, 10pt)")
+
+    # A call-to-action carrying an arrow must look like every other one on the
+    # site. Five of these shipped with no class at all: no weight, no colour, no
+    # underline, no hover, and a tap target under the minimum. One of the five
+    # survived a first sweep because that sweep only looked at .html hrefs.
+    for f in pages(root):
+        src = open(os.path.join(root, f), encoding="utf-8").read()
+        if "<main" not in src or "</main>" not in src:
+            continue      # a page mid-mutation; the tag-balance check owns that
+        body = src[src.index("<main"):src.index("</main>")]
+        # Both encodings. The site shipped 52 `&rarr;` and 2 literal arrows, and
+        # a pattern matching only the entity would have waved the other two past.
+        for m in re.finditer(r'<a (?![^>]*class=)[^>]*href="[^"]*"[^>]*>([^<]*)<span[^>]*>(?:&(?:rarr|#8594);|→)', body):
+            fail.append(f"{f}: arrow link {m.group(1).strip()!r} has no class; "
+                        f"call-to-action links carry .text-link")
+    return fail
+
 
 def check_head(root: str) -> list[str]:
     """The head is the half of a page nobody looks at, so it rots silently.
@@ -453,12 +489,19 @@ DEFECTS = [
     ("a meta tag emptied of its content", lambda s: s.replace('<meta property="og:title" content=', '<meta property="og:title" data-was=', 1)),
     ("a title growing past the truncation point", lambda s: s.replace("</title>", " and Everything Else This Practice Has Ever Done Anywhere</title>", 1)),
     ("a missing meta description", lambda s: s.replace('<meta name="description"', '<meta name="was-description"', 1)),
+    # An arrow call-to-action shipped bare. Five of these were live at once.
+
     # A count and the thing it counts drifting apart across pages.
     ("notarisation count drifting", lambda s: s.replace("<p class=\"lede\">", "<p class=\"lede\">Nineteen accepted notarisations. ", 1)),
 ]
 
 # These two mutate the mirrored build rather than the page under test.
+# Defects planted in files other than the page under test.
 MIRROR_DEFECTS = [
+    ("an arrow link with no class", "proof.html",
+     lambda s: s.replace('<a class="text-link" href="portfolio-feasibility.html">', '<a href="portfolio-feasibility.html">', 1)),
+    ("type dropping below the accessible floor", "styles.css",
+     lambda s: s.replace(".eyebrow, .card-label { margin: 0 0 18px;", ".eyebrow, .card-label { font-size: .7rem; margin: 0 0 18px;", 1)),
     ("mirror copy drift", "family-care-hub/index.html",
      lambda s: s.replace("When my own family needed to coordinate", "When a family needed to coordinate", 1)),
     ("mirror orphaned chunk", "family-care-hub/index.html",
