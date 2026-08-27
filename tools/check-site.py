@@ -17,6 +17,7 @@ Checks, per the standing constraints in the website handoff:
   8. Mirrored build       family-care-hub assets all resolve and none are orphaned,
                           and its copy matches between server HTML and client bundle
   9. Claim consistency    a registered figure is stated the same on every page
+ 10. Retired terms       a renamed thing does not survive under its old name
 
 Run:  python3 tools/check-site.py
       python3 tools/check-site.py --root /path/to/copy
@@ -215,6 +216,7 @@ def check(root: str) -> list[str]:
 
     fail += check_mirror(root)
     fail += check_claim_consistency(root)
+    fail += check_retired_terms(root)
 
     if navs:
         reference = navs.get("index.html") or next(iter(navs.values()))
@@ -282,6 +284,15 @@ def check_mirror(root: str) -> list[str]:
 #
 # Each entry is (name, pattern). The pattern must capture the quantity. Words and digits
 # are compared as the same value, so "three" and "3" do not count as a disagreement.
+# Names the site has retired. A renamed practice leaves its old name behind in the places
+# nobody re-reads: "Systems Engineering" survived the rename in every footer and in the
+# homepage eyebrow, on all thirteen pages, while the nav and the practice band already
+# said something else. Checked against the rendered text, not the source.
+RETIRED_TERMS = {
+    "systems engineering": "the second practice is named Systems & Automation",
+}
+
+
 CLAIM_CONSISTENCY = [
     ("native applications", re.compile(
         r"(\b(?:one|two|three|four|five|six|seven|eight|nine|ten|\d+)\b)\s+native\s+(?:mac ?os\s+)?applications?",
@@ -294,6 +305,17 @@ CLAIM_CONSISTENCY = [
 
 _WORD_NUM = {"one": "1", "two": "2", "three": "3", "four": "4", "five": "5",
              "six": "6", "seven": "7", "eight": "8", "nine": "9", "ten": "10"}
+
+
+def check_retired_terms(root: str) -> list[str]:
+    """A retired name must not survive anywhere in the rendered text."""
+    fail = []
+    for f in pages(root):
+        text = re.sub(r"<[^>]+>", " ", open(os.path.join(root, f), encoding="utf-8").read()).lower()
+        for term, why in RETIRED_TERMS.items():
+            if term in text:
+                fail.append(f"{f}: retired term {term!r} still appears. {why}")
+    return fail
 
 
 def check_claim_consistency(root: str) -> list[str]:
@@ -324,6 +346,7 @@ DEFECTS = [
     ("em dash", lambda s: s.replace("The situation", "The — situation", 1)),
     ("client named in a case study", lambda s: s.replace("A national wireless carrier", "UScellular", 1)),
     ("a registered figure drifting", lambda s: s.replace("<p class=\"lede\">", "<p class=\"lede\">Two native applications. ", 1)),
+    ("a retired name coming back", lambda s: s.replace("<p class=\"lede\">", "<p class=\"lede\">Systems Engineering. ", 1)),
     ("former firm named anywhere", lambda s: s.replace("<p class=\"lede\">", "<p class=\"lede\">Wireless Group Consultants. ", 1)),
     # A cleared name is cleared for one page only. Planting it in a different page's
     # case study must still fail, or the exception has quietly become a hole.
