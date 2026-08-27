@@ -217,6 +217,7 @@ def check(root: str) -> list[str]:
     fail += check_mirror(root)
     fail += check_claim_consistency(root)
     fail += check_retired_terms(root)
+    fail += check_head(root)
 
     if navs:
         reference = navs.get("index.html") or next(iter(navs.values()))
@@ -298,6 +299,14 @@ RETIRED_TERMS = {
     # a conversation, never on the public site. 2026-08-26: "poor form to post
     # that as a comparative". 2026-08-27, on finding it published anyway:
     # "NOOOO do not put that on the site."
+    # RULED BY JOSH 2026-08-27, same sitting as the 536: the site may say what
+    # the work was, never something about a person. "There should be ways to
+    # reword these that do not name him or denigrate any person in any way."
+    # The UScellular line crediting his partner's history stays, because it
+    # credits rather than compares.
+    "due diligence with my former partner": "the site does not disclose an unresolved matter with a former partner",
+    "my partner had a process": "describe the process, not whose it was",
+    "to my partner, to employees": "describe who was taught, not their rank relative to me",
     "536 of those": "the authorship comparative stays off the public site",
     "536 of them": "the authorship comparative stays off the public site",
     "last person to have saved": "the authorship comparative stays off the public site",
@@ -351,6 +360,56 @@ def check_retired_terms(root: str) -> list[str]:
     return fail
 
 
+TITLE_MAX = 70   # Google truncates a result title around here.
+
+
+def check_head(root: str) -> list[str]:
+    """The head is the half of a page nobody looks at, so it rots silently.
+
+    Registered 2026-08-27 after about.html was found shipping
+    `<meta property="og:title" >` with no content attribute at all. It had
+    been that way since the career-record commit. Every share of the page
+    a hiring manager is most likely to open produced a card with no title,
+    and nothing on the rendered page looked wrong.
+    """
+    fail = []
+    for f in pages(root):
+        src = open(os.path.join(root, f), encoding="utf-8").read()
+        head = src[:src.index("</head>")] if "</head>" in src else src
+
+        # No meta or link tag may carry an empty or absent value.
+        for tag in re.findall(r"<meta[^>]*>", head):
+            if "charset" in tag or ("property=" not in tag and "name=" not in tag):
+                continue
+            c = re.search(r'content="([^"]*)"', tag)
+            if c is None or not c.group(1).strip():
+                fail.append(f"{f}: meta tag has no content -- {tag.strip()}")
+        for tag in re.findall(r"<link[^>]*>", head):
+            h = re.search(r'href="([^"]*)"', tag)
+            if h is None or not h.group(1).strip():
+                fail.append(f"{f}: link tag has no href -- {tag.strip()}")
+
+        t = re.search(r"<title>(.*?)</title>", head, re.S)
+        if not t or not t.group(1).strip():
+            fail.append(f"{f}: no <title>")
+        elif len(t.group(1)) > TITLE_MAX:
+            fail.append(f"{f}: title is {len(t.group(1))} chars, over {TITLE_MAX} -- {t.group(1)}")
+
+        if not re.search(r'<meta name="description" content="[^"]+"', head):
+            fail.append(f"{f}: no meta description")
+
+        # 404 is not a page anyone shares.
+        if f != "404.html":
+            for prop in ("og:title", "og:description", "og:image"):
+                if not re.search(r'<meta property="%s" content="[^"]+"' % re.escape(prop), head):
+                    fail.append(f"{f}: no {prop}")
+            og = re.search(r'<meta property="og:title" content="([^"]*)"', head)
+            ti = re.search(r"<title>(.*?)</title>", head, re.S)
+            if og and ti and og.group(1).strip() != ti.group(1).strip():
+                fail.append(f"{f}: og:title and <title> disagree")
+    return fail
+
+
 def check_claim_consistency(root: str) -> list[str]:
     """Every page must state a registered figure the same way."""
     seen: dict[str, dict[str, list[str]]] = {name: {} for name, _ in CLAIM_CONSISTENCY}
@@ -389,6 +448,11 @@ DEFECTS = [
     ("a retired figure coming back", lambda s: s.replace("<p class=\"lede\">", "<p class=\"lede\">Four hundred sites. ", 1)),
     # The authorship comparative Josh has now ruled off the site twice.
     ("the authorship comparative coming back", lambda s: s.replace("<p class=\"lede\">", "<p class=\"lede\">536 of those carry me as the last person to have saved the file. ", 1)),
+    ("a line about a person rather than the work", lambda s: s.replace("<p class=\"lede\">", "<p class=\"lede\">My partner had a process and it worked. ", 1)),
+    # The head rots where nobody looks.
+    ("a meta tag emptied of its content", lambda s: s.replace('<meta property="og:title" content=', '<meta property="og:title" data-was=', 1)),
+    ("a title growing past the truncation point", lambda s: s.replace("</title>", " and Everything Else This Practice Has Ever Done Anywhere</title>", 1)),
+    ("a missing meta description", lambda s: s.replace('<meta name="description"', '<meta name="was-description"', 1)),
     # A count and the thing it counts drifting apart across pages.
     ("notarisation count drifting", lambda s: s.replace("<p class=\"lede\">", "<p class=\"lede\">Nineteen accepted notarisations. ", 1)),
 ]

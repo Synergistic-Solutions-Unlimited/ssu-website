@@ -73,7 +73,7 @@ p { margin-top: 0; }
 .split-section { display: grid; grid-template-columns: minmax(250px, .75fr) minmax(0, 1fr); gap: clamp(50px, 9vw, 130px); }
 .prose-stack { max-width: 720px; color: var(--ink-soft); font-size: 1.12rem; }
 .prose-stack p { margin-bottom: 22px; }
-.text-link { display: inline-block; margin-top: 14px; color: var(--teal-dark); font-weight: 800; text-decoration-thickness: 2px; text-underline-offset: 5px; }
+.text-link { display: inline-block; min-height: 24px; margin-top: 14px; color: var(--teal-dark); font-weight: 800; text-decoration-thickness: 2px; text-underline-offset: 5px; }
 .cta-band { width: min(var(--max), calc(100% - 40px)); margin: 30px auto 80px; padding: clamp(36px, 6vw, 70px); display: flex; align-items: center; justify-content: space-between; gap: 30px; border-radius: var(--radius); background: var(--teal); color: white; }
 .cta-band .eyebrow { color: var(--lime); }
 .cta-band h2 { max-width: 720px; margin: 0; font-size: clamp(2rem, calc(1.28rem + 2.4vw), 3.7rem); }
