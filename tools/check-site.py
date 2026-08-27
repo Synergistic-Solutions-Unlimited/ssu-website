@@ -66,6 +66,16 @@ FIRM_BLOCKED = ["wireless group"]
 # Pages that exist only to tell the story of something he built.
 CASE_PAGES = {"portfolio-feasibility.html", "property-operations.html"}
 
+# Individually cleared exceptions, (page, client). Each one is a decision Josh made
+# about a specific story, recorded here rather than applied by loosening the rule,
+# so the rule keeps working everywhere else and every exception has a name on it.
+#
+#   contested-outcomes / firstnet -- Josh, 2026-08-27. The easement recovery is site
+#   work, not a program he authored for them, so his 2026-08-27 ruling permits it.
+STORY_CLIENT_EXCEPTIONS = {
+    ("contested-outcomes.html", "firstnet"),
+}
+
 # Blocks that tell that story on any other page.
 STORY_BLOCK = re.compile(
     r'<article class="[^"]*(?:case-study|proof-card)[^"]*">(.*?)</article>', re.S)
@@ -156,8 +166,11 @@ def check(root: str) -> list[str]:
         else:
             scopes = [("case study or proof card", m.group(1).lower())
                       for m in STORY_BLOCK.finditer(src)]
+        base = os.path.basename(name)
         for where, text in scopes:
             for client in CLIENT_NAMES:
+                if (base, client) in STORY_CLIENT_EXCEPTIONS:
+                    continue
                 if client in text:
                     fail.append(f"{name}: client {client!r} named inside a {where}. "
                                 "Relationships are nameable; what he built for them is not.")
@@ -268,6 +281,9 @@ DEFECTS = [
     ("em dash", lambda s: s.replace("The situation", "The — situation", 1)),
     ("client named in a case study", lambda s: s.replace("A national wireless carrier", "UScellular", 1)),
     ("former firm named anywhere", lambda s: s.replace("<p class=\"lede\">", "<p class=\"lede\">Wireless Group Consultants. ", 1)),
+    # A cleared name is cleared for one page only. Planting it in a different page's
+    # case study must still fail, or the exception has quietly become a hole.
+    ("cleared name reused on another page", lambda s: s.replace("A national wireless carrier", "FirstNet", 1)),
 ]
 
 # These two mutate the mirrored build rather than the page under test.
