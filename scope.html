@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="SCOPE: a native macOS and iOS app for project control, time tracking and invoicing, sharing one store across devices through iCloud. 83 commits, 479 automated tests, and a verification step that plants a defect before it believes a pass.">
+  <meta name="description" content="SCOPE: a native macOS and iOS app for project control, time tracking and invoicing, sharing one store across devices through iCloud. 87 commits, 497 automated tests, and a verification step that plants a defect before it believes a pass.">
   <title>SCOPE | Two Platforms, One Clock | Case Study | SSU</title>
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://thinksynergy.biz/scope.html">
   <meta property="og:title" content="SCOPE | Two Platforms, One Clock | Case Study | SSU">
-  <meta property="og:description" content="SCOPE: a native macOS and iOS app for project control, time tracking and invoicing, sharing one store across devices through iCloud. 83 commits, 479 automated tests, and a verification step that plants a defect before it believes a pass.">
+  <meta property="og:description" content="SCOPE: a native macOS and iOS app for project control, time tracking and invoicing, sharing one store across devices through iCloud. 87 commits, 497 automated tests, and a verification step that plants a defect before it believes a pass.">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="canonical" href="https://thinksynergy.biz/scope.html">
@@ -118,7 +118,7 @@
         <h2 id="verify-heading">A check that has never failed is not known to work.</h2>
       </div>
       <div class="prose-stack">
-        <p>479 automated tests, and a verification script of nine checks. One of those nine is a control: before a pass is believed, the script plants a defect and requires the detector to catch it. A green result that cannot be made red is not a result.</p>
+        <p>497 automated tests, and a verification script that ends in a control: before a pass is believed, it plants a defect and requires the detector to catch it. A green result that cannot be made red is not a result.</p>
         <p><strong>That standard found a real defect in the app's own design system.</strong> Contrast was computed rather than looked at, and prominent button labels turned out to be resolved against a hardcoded dark appearance while their fill followed the live one. Three registers measured about 3.5:1 in light mode. One measured 1.02:1, which is a label almost exactly the colour of the button it sits on.</p>
         <p>Nobody would have found that by looking, because at 1.02:1 there is nothing to look at. It was fixed and then pinned with a control that replays the shipping values and requires each of them to be rejected, so the defect cannot return quietly.</p>
         <p class="estimate-note"><strong>Worth saying plainly:</strong> this site was measured by the same method on the same day, and it also had a link at 1.02:1 against its ground. Two codebases, one standard, the same defect class in both. Neither was visible to a structural checker. Both needed a computed ratio.</p>
@@ -162,7 +162,7 @@
           <li><strong>Source of truth.</strong> One store, one clock, and a cloud environment pinned explicitly rather than inherited from the build.</li>
           <li><strong>Structured operating data.</strong> Time modelled as contiguous slices that must sum to the sitting they came from.</li>
           <li><strong>Workflows and controls.</strong> Guards against double billing and against billing that never charges, on every path rather than the one the interface happens to use.</li>
-          <li><strong>Tested and handed off.</strong> 479 tests, a verification script that proves its own detector, and a signed, notarised install.</li>
+          <li><strong>Tested and handed off.</strong> 497 tests, a verification script that proves its own detector, and a signed, notarised install.</li>
         </ol>
       </div>
     </section>
