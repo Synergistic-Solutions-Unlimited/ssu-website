@@ -87,6 +87,8 @@ def card(slug, headline, stats):
     return f"og/{slug}.png"
 
 CARDS = [
+ ("shared-universe", "One contract, six surfaces, and a product that had to feel like a person made it.",
+   [("6","Surfaces, one contract"),("202","Commits"),("990","Tracked files"),("22","Hours of history")]),
  ("index", "Operational systems for land development and property operations.",
    [("865","Sites developed"),("23","States"),("13,875","Project documents"),("3","Denials in twelve years")]),
  ("infrastructure", "Twelve years getting land ready to build on.",

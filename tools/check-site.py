@@ -331,6 +331,13 @@ CLAIM_CONSISTENCY = [
         re.I)),
     ("operational systems", re.compile(
         r"(\b(?:one|two|three|four|five|six|seven|eight|nine|ten|\d+)\b)\s+operational\s+systems?", re.I)),
+    # Registered 2026-09-03. The Shared Universe page shipped a headline saying
+    # "five surfaces" over a stat band saying "6", because the two counts were
+    # written in different notations and no check compared across notation. The
+    # normaliser below maps the word and the digit to one token, which is the
+    # whole point: a claim is a claim whichever way it is spelled.
+    ("surfaces", re.compile(
+        r"(\b(?:one|two|three|four|five|six|seven|eight|nine|ten|\d+)\b)\s+(?!Apple\b)(?:shared\s+)?surfaces?\b", re.I)),
     ("denials", re.compile(
         r"(\b(?:one|two|three|four|five|\d+)\b)\s+denials?\b", re.I)),
     # Registered 2026-08-27 after this figure was corrected on three pages and survived
@@ -481,6 +488,8 @@ DEFECTS = [
     ("cleared name reused on another page", lambda s: s.replace("A national wireless carrier", "FirstNet", 1)),
     # The phantom portfolio figure. It sat on the home page while every case page
     # said 316, which is the shape a wrong number takes when only one page is read.
+    # A count written as a word against the same count written as a digit.
+    ("a surface count spelled two ways", lambda s: s.replace("<p class=\"lede\">", "<p class=\"lede\">Five surfaces. ", 1)),
     ("a retired figure coming back", lambda s: s.replace("<p class=\"lede\">", "<p class=\"lede\">Four hundred sites. ", 1)),
     # The authorship comparative Josh has now ruled off the site twice.
     ("the authorship comparative coming back", lambda s: s.replace("<p class=\"lede\">", "<p class=\"lede\">536 of those carry me as the last person to have saved the file. ", 1)),

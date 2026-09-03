@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A private media system for two people, delivered across Apple TV, iPhone, iPad, Mac, a Top Shelf extension and the web from one shared contract. 202 commits and 990 tracked files inside 22 hours of repository history, with an Apple TV build in TestFlight review.">
+  <title>Six Surfaces, One Contract | Shared Universe Case Study | SSU</title>
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://thinksynergy.biz/shared-universe.html">
+  <meta property="og:title" content="Six Surfaces, One Contract | Shared Universe Case Study | SSU">
+  <meta property="og:description" content="A private media system for two people, delivered across Apple TV, iPhone, iPad, Mac, a Top Shelf extension and the web from one shared contract. 202 commits and 990 tracked files inside 22 hours of repository history, with an Apple TV build in TestFlight review.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="canonical" href="https://thinksynergy.biz/shared-universe.html">
+  <meta property="og:image" content="https://thinksynergy.biz/og/shared-universe.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Shared Universe: five Apple surfaces and the web, 202 commits, 990 tracked files, inside 22 hours.">
+  <meta property="og:site_name" content="Synergistic Solutions Unlimited">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://thinksynergy.biz/og/shared-universe.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Synergistic Solutions Unlimited home"><span class="brand-mark" aria-hidden="true">SSU</span><span>Synergistic Solutions Unlimited</span></a>
+    <nav aria-label="Primary navigation"><a href="index.html">Home</a><a href="infrastructure.html">Infrastructure</a><a href="services.html">Services</a><a href="systems.html">Systems &amp; Automation</a><a href="proof.html">Proof</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
+  </header>
+
+  <main id="main">
+    <header class="page-hero">
+      <p class="eyebrow">Case study &middot; Six surfaces</p>
+      <h1>One contract, six surfaces, and a product that had to feel like a person made it.</h1>
+      <p class="lede">A private media system built for two people. It runs on Apple TV, iPhone, iPad, Mac, an Apple TV Top Shelf extension and the web, and every one of those surfaces reads the same private contract. An Apple TV build reached TestFlight and entered Apple&rsquo;s review process.</p>
+      <div class="button-row">
+        <a class="button button-primary" href="contact.html">Discuss work like this</a>
+        <a class="button button-secondary" href="systems.html">The rest of the systems practice</a>
+      </div>
+    </header>
+
+    <section class="stat-band" aria-label="The delivery at a glance">
+      <ul>
+        <li><span class="stat-figure">6</span><span class="stat-label">Surfaces on one shared contract</span></li>
+        <li><span class="stat-figure">202</span><span class="stat-label">Commits in the delivery history</span></li>
+        <li><span class="stat-figure">990</span><span class="stat-label">Tracked files at the release candidate</span></li>
+        <li><span class="stat-figure">22</span><span class="stat-label">Hours of repository history</span></li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="brief-heading">
+      <div class="section-heading">
+        <p class="eyebrow">The brief</p>
+        <h2 id="brief-heading">Not a media database. A record of two people.</h2>
+      </div>
+      <div class="prose-stack">
+        <p>The starting point was not a feature list. It was lived context: what two people had watched together, what they had watched apart, and which of those things carried something worth keeping. A generic catalogue answers none of that, because the interesting information is not the film. It is whose memory it is.</p>
+        <p><strong>So the product model came first and the software came second.</strong> Shared memories, and distinct lenses for each person and for both together, kept separate from who is signed in. A seasonal calendar. Dates that matter. A companion character with a written voice, sarcastic and fond, rather than a general assistant wearing a name.</p>
+        <p>The artwork was chosen by hand and approved as final. <strong>No automated process was permitted to regenerate or replace an accepted master.</strong> That rule exists because a system that can improve your artwork can also quietly lose it, and the pieces in this product are not interchangeable.</p>
+      </div>
+    </section>
+
+    <section class="section section-dark" aria-labelledby="built-heading">
+      <div class="section-heading">
+        <p class="eyebrow">What was built</p>
+        <h2 id="built-heading">Six surfaces, and none of them a port of another.</h2>
+      </div>
+      <div class="card-grid card-grid-two">
+        <article class="plain-card">
+          <h3>Apple TV, and the room it sits in</h3>
+          <p>A native tvOS experience designed for a television rather than scaled up from a phone: Siri Remote focus movement, deterministic focus recovery, and destinations that keep the main hall visible behind them so the viewer never loses their place.</p>
+        </article>
+        <article class="plain-card">
+          <h3>iPhone, iPad and Mac</h3>
+          <p>Native SwiftUI on each, sharing one core architecture and build identity. Adaptive layouts including iPad multitasking, on-device dictation, keyboard navigation on the Mac, and accessibility behaviour for larger text, VoiceOver, Reduce Motion and increased contrast.</p>
+        </article>
+        <article class="plain-card">
+          <h3>A Top Shelf extension</h3>
+          <p>The strip of artwork Apple TV shows above the app. It picks seasonal and special-event art on a schedule, falls closed to a safe default when shared state is unavailable, and can only open destinations the app already owns.</p>
+        </article>
+        <article class="plain-card">
+          <h3>The web application</h3>
+          <p>A responsive experience carrying the same catalogue, recommendations, signals and invitation flow, with honest unavailable states rather than empty ones, and audio that never starts by itself.</p>
+        </article>
+      </div>
+      <div class="prose-stack">
+        <p class="prose-on-dark"><strong>One private JSON contract underneath all six.</strong> That is the part that makes this a system rather than six apps with a family resemblance. A change to scheduling, identity, audio, catalogue shape or artwork lands in one place and reaches every surface, and the schedule tests are time-zone and daylight-saving aware so a date window fails closed instead of revealing something on the wrong day.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="speed-heading">
+      <div class="section-heading">
+        <p class="eyebrow">The pace, stated precisely</p>
+        <h2 id="speed-heading">202 commits and 990 files inside 22 hours of history.</h2>
+      </div>
+      <div class="prose-stack">
+        <p>The delivery history holds <strong>202 commits and 990 tracked files</strong>, and the first and last of those commits are <strong>21 hours and 50 minutes apart</strong>. Read from the repository on 3 September 2026, not recalled.</p>
+        <p><strong>That figure is the repository, and it is not the whole job.</strong> Concept, product model, artwork selection and the seasonal rules were settled before the first commit existed, and none of that appears in a git log. The total elapsed effort was longer and I have not measured it, so it is not stated here as though I had.</p>
+      </div>
+      <div class="method-map">
+        <p class="mini-label">Verified from the repository</p>
+        <ol>
+          <li><strong>202 commits, 990 tracked files</strong>, on the release-candidate branch at commit <code>18bfcb9</code>.</li>
+          <li><strong>21 hours 50 minutes</strong> between the first and last commit in that history.</li>
+          <li><strong>Marketing version 1.0, build 11</strong>, and the project carries exactly one of each value, so the Apple targets are genuinely synchronised rather than nominally so.</li>
+          <li><strong>Separate schemes for TV, mobile and Mac</strong>, a shared Swift package underneath them, and an extension target for Top Shelf.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="role-heading">
+      <div class="section-heading">
+        <p class="eyebrow">Who did what</p>
+        <h2 id="role-heading">I directed it. AI lanes did the building.</h2>
+      </div>
+      <div class="prose-stack">
+        <p>I was the product, creative, governance and acceptance authority. The concept, the relationship context, the artwork decisions, the seasonal calendar, the companion&rsquo;s voice, the privacy boundaries and every correction came from me. <strong>An AI build lane did the implementation and integration under that direction, and a second lane did bounded review, audits and focused repairs.</strong></p>
+        <p>The thing worth reporting is not that agents wrote code. It is what the arrangement had to look like before it produced something shippable. <strong>One lane owned the authoritative branch and the right to accept, reject or supersede anything before it entered the product.</strong> Everything else ran as bounded work with explicit files and acceptance criteria.</p>
+        <p><strong>The finding, and it cost something to learn:</strong> the fastest arrangement is not the one with the most agents writing at once. It is one authoritative integration lane, strong human direction, and parallel agents given work narrow enough to verify independently. Open-ended competing builds create merge, context and worktree overhead that erases the parallelism that motivated them.</p>
+      </div>
+      <p class="section-footnote"><a class="text-link" href="scope.html">The same arrangement, on a smaller build <span aria-hidden="true">&rarr;</span></a></p>
+    </section>
+
+    <section class="section" aria-labelledby="gates-heading">
+      <div class="section-heading">
+        <p class="eyebrow">Where it stops</p>
+        <h2 id="gates-heading">Release state, exactly as the record has it.</h2>
+      </div>
+      <div class="prose-stack">
+        <p><strong>An Apple TV build reached TestFlight and was shown as waiting for review.</strong> That is Apple&rsquo;s beta distribution system, and it is the furthest this product has travelled toward anyone outside it.</p>
+        <p><strong>The current release candidate is synchronised across all five Apple targets in source, and is deliberately unsigned and not uploaded.</strong> Signing, upload, App Store platform records, processing, tester assignment and physical-device acceptance are separate authorised gates, and none of them is claimed here. Feature completeness runs ahead of release readiness for exactly that reason.</p>
+        <p>The backend follows the same rule. Local source completion is kept apart from production deployment authority, and only migrations with separate authorisation and a readback plan are activated.</p>
+      </div>
+    </section>
+
+    <section class="section split-section" aria-labelledby="claims-heading">
+      <div>
+        <p class="eyebrow">What is not claimed</p>
+        <h2 id="claims-heading">The limits of the figures above.</h2>
+      </div>
+      <div class="prose-stack">
+        <p><strong>The commit, file and version figures are exact and were read from the repository on 3 September 2026.</strong> The 22 hours is the span of that history and nothing more: it is not a claim about total effort, which included work that predates the repository and which I have not measured.</p>
+        <p><strong>The completion percentages in the internal record are conservative working estimates, not release certificates</strong>, so they do not appear here as figures. Test counts are not quoted either, because the suites are rerun as active repair lanes are integrated and a number taken mid-flight would be a different measurement wearing the same name.</p>
+        <p>The other person in this product is not named, and neither the artwork, the specific dates, nor the contents of the catalogue appear here. The product is private and stays that way; what is described is the method.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="method-heading">
+      <div class="section-heading"><p class="eyebrow">Mapped to the method</p><h2 id="method-heading">The same four steps, applied to six surfaces.</h2></div>
+      <div class="method-map">
+        <ol>
+          <li><strong>Source of truth.</strong> One private JSON contract that every surface reads, rather than each client holding its own idea of the catalogue.</li>
+          <li><strong>Structured operating data.</strong> Stable catalogue identifiers, seasonal windows as scheduled data, and viewing lenses kept distinct from authenticated identity.</li>
+          <li><strong>Workflows and controls.</strong> Approved artwork protected from automated replacement, date windows that fail closed, audio that never starts by itself, and signing and deployment held as separate gates.</li>
+          <li><strong>Tested and handed off.</strong> Contract tests for identity, signing, navigation, seasonal art, accessibility, catalogue provenance and extension behaviour, and a build that reached Apple&rsquo;s review process.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="next-heading">
+      <div class="section-heading"><p class="eyebrow">Read next</p><h2 id="next-heading">Where this method came from.</h2></div>
+      <div class="prose-stack">
+        <p><a class="text-link" href="scope.html">SCOPE</a> is the same direct-and-review arrangement on a single build, with the notarisation record attached.</p>
+        <p><a class="text-link" href="family-care-hub/">Family Care Hub</a> is the other private application on this site, built for my own family, and published as a synthetic case study for the same reason this one names nobody.</p>
+      </div>
+    </section>
+
+    <section class="cta-band" aria-labelledby="su-contact">
+      <div><p class="eyebrow">Contact</p><h2 id="su-contact">Bring the product that has to work on every screen at once.</h2></div>
+      <a class="button button-light" href="mailto:jwatson@thinksynergy.biz">jwatson@thinksynergy.biz</a>
+    </section>
+  </main>
+  <footer class="site-footer"><p>&copy; 2026 Synergistic Solutions Unlimited</p><p>Property Operations &middot; Infrastructure &middot; Systems &amp; Automation</p></footer>
+</body>
+</html>
